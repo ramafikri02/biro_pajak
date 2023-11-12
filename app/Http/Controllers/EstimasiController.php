@@ -1,0 +1,156 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Estimasi;
+use App\Models\Kendaraan;
+use App\Models\Pelanggan;
+use App\Models\TipePengurusan;
+use App\Models\Wilayah;
+use Illuminate\Support\Facades\Redirect;
+
+class EstimasiController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('estimasi.index');
+    }
+
+    public function data()
+    {
+        $estimasi = Estimasi::orderBy('id_estimasi', 'desc')->get();
+
+        return datatables()
+            ->of($estimasi)
+            ->addIndexColumn()
+            ->addColumn('aksi', function ($estimasi) {
+                return '
+                <div class="btn-group">
+                    <button onclick="editForm(`'. route('estimasi.update', $estimasi->id_estimasi) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
+                    <button onclick="deleteData(`'. route('estimasi.destroy', $estimasi->id_estimasi) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                </div>
+                ';
+            })
+            ->rawColumns(['aksi'])
+            ->make(true);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $tipe_pengurusan = TipePengurusan::all()->pluck('nama_pengurusan', 'id_tipe_pengurusan');
+        $wilayah = Wilayah::all()->pluck('nama_wilayah', 'id_wilayah');
+        $kendaraan = Kendaraan::all()->pluck('no_plat', 'id_kendaraan');
+        $pelanggan = Pelanggan::all()->pluck('nama_pelanggan', 'id_pelanggan');
+
+        return view('estimasi.create', compact('tipe_pengurusan', 'wilayah', 'kendaraan', 'pelanggan'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $estimasi = new Estimasi();
+        // $estimasi->no_plat = $request->no_plat;
+        $estimasi->id_kendaraan = $request->id_kendaraan;
+        $estimasi->nilai_pkb = $request->nilai_pkb;
+        $estimasi->swdkllj = $request->swdkllj;
+        $estimasi->masa_berlaku_stnk = $request->masa_berlaku_stnk;
+        $estimasi->id_tipe_pengurusan = $request->id_tipe_pengurusan;
+        $estimasi->id_wilayah = $request->id_wilayah;
+        $estimasi->jenis_kendaraan = $request->jenis_kendaraan;
+        $estimasi->id_pelanggan = $request->id_pelanggan;
+        $estimasi->admin_stnk = $request->admin_stnk;
+        $estimasi->admin_tnkb = $request->admin_tnkb;
+        $estimasi->biaya_proses = $request->biaya_proses;
+        $estimasi->biaya_admin_pelanggan = $request->biaya_admin_pelanggan;
+        $estimasi->upping = $request->upping;
+        $estimasi->biaya_estimasi = $request->biaya_estimasi;
+        $estimasi->save();
+
+        return Redirect::to('/estimasi');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $estimasi = Estimasi::find($id);
+
+        return response()->json($estimasi);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $estimasi = Estimasi::find($id);
+        return view('estimasi.create', compact('estimasi'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $estimasi = Estimasi::find($id);
+        // $estimasi->no_plat = $request->no_plat;
+        $estimasi->id_kendaraan = $request->id_kendaraan;
+        $estimasi->nilai_pkb = $request->nilai_pkb;
+        $estimasi->swdkllj = $request->swdkllj;
+        $estimasi->masa_berlaku_stnk = $request->masa_berlaku_stnk;
+        $estimasi->id_tipe_pengurusan = $request->id_tipe_pengurusan;
+        $estimasi->id_wilayah = $request->id_wilayah;
+        $estimasi->jenis_kendaraan = $request->jenis_kendaraan;
+        $estimasi->id_pelanggan = $request->id_pelanggan;
+        $estimasi->admin_stnk = $request->admin_stnk;
+        $estimasi->admin_tnkb = $request->admin_tnkb;
+        $estimasi->biaya_proses = $request->biaya_proses;
+        $estimasi->biaya_admin_pelanggan = $request->biaya_admin_pelanggan;
+        $estimasi->upping = $request->upping;
+        $estimasi->biaya_estimasi = $request->biaya_estimasi;
+        $estimasi->update();
+
+        return response()->json('Data berhasil disimpan', 200);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $estimasi = Estimasi::find($id);
+        $estimasi->delete();
+
+        return response(null, 204);
+    }
+}
