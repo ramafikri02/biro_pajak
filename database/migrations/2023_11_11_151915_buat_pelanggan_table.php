@@ -18,7 +18,7 @@ class BuatPelangganTable extends Migration
             $table->string('kode_pelanggan')
                   ->unique();
             $table->string('nama_pelanggan')->unique();
-            $table->string('admin')->nullable();
+            $table->unsignedInteger('id_biaya_admin')->nullable();
             $table->string('createdBy')->nullable();
             $table->timestamps();
         });

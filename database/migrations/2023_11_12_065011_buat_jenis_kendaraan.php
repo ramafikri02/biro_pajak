@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BuatTipePengurusanTable extends Migration
+class BuatJenisKendaraan extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class BuatTipePengurusanTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipe_pengurusan', function (Blueprint $table) {
-            $table->increments('id_tipe_pengurusan');
-            $table->string('nama_pengurusan');
-            $table->integer('biaya_proses')->default(0);
+        Schema::create('jenis_kendaraan', function (Blueprint $table) {
+            $table->increments('id_jenis_kendaraan');
+            $table->string('jenis');
+            $table->integer('admin_stnk')->default(0);
+            $table->integer('admin_tnkb')->default(0);
             $table->string('createdBy')->nullable();
             $table->timestamps();
         });
@@ -29,6 +30,6 @@ class BuatTipePengurusanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipe_pengurusan');
+        Schema::dropIfExists('jenis_kendaraan');
     }
 }

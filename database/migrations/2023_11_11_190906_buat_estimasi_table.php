@@ -22,7 +22,7 @@ class BuatEstimasiTable extends Migration
             $table->timestamp('masa_berlaku_stnk');
             $table->unsignedInteger('id_tipe_pengurusan');
             $table->unsignedInteger('id_wilayah');
-            $table->string('jenis_kendaraan');
+            $table->unsignedInteger('id_jenis_kendaraan');
             $table->unsignedInteger('id_pelanggan');
             $table->integer('admin_stnk')->default(0);
             $table->integer('admin_tnkb')->default(0);

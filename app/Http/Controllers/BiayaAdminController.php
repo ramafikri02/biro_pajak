@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Pelanggan;
 use App\Models\BiayaAdmin;
 
-class PelangganController extends Controller
+class BiayaAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,22 +14,21 @@ class PelangganController extends Controller
      */
     public function index()
     {
-        $biaya_admin = BiayaAdmin::all()->pluck('nama_admin', 'id_biaya_admin');
-        return view('pelanggan.index', compact('biaya_admin'));
+        return view('biaya_admin.index');
     }
 
     public function data()
     {
-        $pelanggan = Pelanggan::orderBy('id_pelanggan', 'desc')->get();
+        $biaya_admin = BiayaAdmin::orderBy('id_biaya_admin', 'desc')->get();
 
         return datatables()
-            ->of($pelanggan)
+            ->of($biaya_admin)
             ->addIndexColumn()
-            ->addColumn('aksi', function ($pelanggan) {
+            ->addColumn('aksi', function ($biaya_admin) {
                 return '
                 <div class="btn-group">
-                    <button onclick="editForm(`'. route('pelanggan.update', $pelanggan->id_pelanggan) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
-                    <button onclick="deleteData(`'. route('pelanggan.destroy', $pelanggan->id_pelanggan) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+                    <button onclick="editForm(`'. route('biaya_admin.update', $biaya_admin->id_biaya_admin) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
+                    <button onclick="deleteData(`'. route('biaya_admin.destroy', $biaya_admin->id_biaya_admin) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
                 </div>
                 ';
             })
@@ -56,10 +54,10 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        $pelanggan = Pelanggan::latest()->first() ?? new Pelanggan();
-        $request['kode_pelanggan'] = 'PLG'. tambah_nol_didepan((int)$pelanggan->id_pelanggan +1, 4);
-
-        $pelanggan = Pelanggan::create($request->all());
+        $biaya_admin = new BiayaAdmin();
+        $biaya_admin->nama_admin = $request->nama_admin;
+        $biaya_admin->biaya = $request->biaya;
+        $biaya_admin->save();
 
         return response()->json('Data berhasil disimpan', 200);
     }
@@ -72,9 +70,9 @@ class PelangganController extends Controller
      */
     public function show($id)
     {
-        $pelanggan = Pelanggan::find($id);
+        $biaya_admin = BiayaAdmin::find($id);
 
-        return response()->json($pelanggan);
+        return response()->json($biaya_admin);
     }
 
     /**
@@ -97,10 +95,10 @@ class PelangganController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pelanggan = Pelanggan::find($id);
-        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
-        $pelanggan->id_biaya_admin = $request->id_biaya_admin;
-        $pelanggan->update();
+        $biaya_admin = BiayaAdmin::find($id);
+        $biaya_admin->nama_admin = $request->nama_admin;
+        $biaya_admin->biaya = $request->biaya;
+        $biaya_admin->update();
 
         return response()->json('Data berhasil disimpan', 200);
     }
@@ -113,18 +111,9 @@ class PelangganController extends Controller
      */
     public function destroy($id)
     {
-        $pelanggan = Pelanggan::find($id);
-        $pelanggan->delete();
+        $biaya_admin = BiayaAdmin::find($id);
+        $biaya_admin->delete();
 
         return response(null, 204);
-    }
-
-    public function autocomplete(Request $request)
-    {
-        $data = Pelanggan::select("id_pelanggan")
-                ->where("id_pelanggan","LIKE","%{$request->query}%")
-                ->get();
-   
-        return response()->json($data);
     }
 }

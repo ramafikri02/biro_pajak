@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kendaraan;
 use App\Models\Pelanggan;
+use App\Models\JenisKendaraan;
 
 class KendaraanController extends Controller
 {
@@ -16,6 +17,7 @@ class KendaraanController extends Controller
     public function index()
     {
         $pelanggan = Pelanggan::all()->pluck('nama_pelanggan', 'id_pelanggan');
+        $jenis_kendaraan = JenisKendaraan::all()->pluck('jenis', 'id_jenis_kendaraan');
 
         return view('kendaraan.index', compact('pelanggan'));
     }
@@ -59,6 +61,7 @@ class KendaraanController extends Controller
     {
         $kendaraan = new Kendaraan();
         $kendaraan->id_pelanggan = $request->id_pelanggan;
+        $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $kendaraan->no_plat = $request->no_plat;
         $kendaraan->save();
 
@@ -100,6 +103,7 @@ class KendaraanController extends Controller
     {
         $kendaraan = Kendaraan::find($id);
         $kendaraan->id_pelanggan = $request->id_pelanggan;
+        $kendaraan->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $kendaraan->no_plat = $request->no_plat;
         $kendaraan->update();
 

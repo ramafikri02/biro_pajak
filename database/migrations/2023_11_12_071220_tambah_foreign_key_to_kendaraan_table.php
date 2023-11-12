@@ -19,6 +19,11 @@ class TambahForeignKeyToKendaraanTable extends Migration
                   ->on('pelanggan')
                   ->onUpdate('restrict')
                   ->onDelete('restrict');
+            $table->foreign('id_jenis_kendaraan')
+                    ->references('id_jenis_kendaraan')
+                    ->on('jenis_kendaraan')
+                    ->onUpdate('restrict')
+                    ->onDelete('restrict');
         });
     }
 
@@ -30,7 +35,8 @@ class TambahForeignKeyToKendaraanTable extends Migration
     public function down()
     {
         Schema::table('kendaraan', function (Blueprint $table) {
-            $table->dropForeign('produkkendaraan_id_pelanggan_foreign');
+            $table->dropForeign('kendaraan_id_pelanggan_foreign');
+            $table->dropForeign('kendaraan_id_jenis_kendaraan_foreign');
         });
     }
 }

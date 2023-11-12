@@ -56,6 +56,7 @@ class TipePengurusanController extends Controller
     {
         $tipe_pengurusan = new TipePengurusan();
         $tipe_pengurusan->nama_pengurusan = $request->nama_pengurusan;
+        $tipe_pengurusan->biaya_proses = $request->biaya_proses;
         $tipe_pengurusan->save();
 
         return response()->json('Data berhasil disimpan', 200);
@@ -96,6 +97,7 @@ class TipePengurusanController extends Controller
     {
         $tipe_pengurusan = TipePengurusan::find($id);
         $tipe_pengurusan->nama_pengurusan = $request->nama_pengurusan;
+        $tipe_pengurusan->biaya_proses = $request->biaya_proses;
         $tipe_pengurusan->update();
 
         return response()->json('Data berhasil disimpan', 200);

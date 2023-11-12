@@ -15,6 +15,7 @@ class BuatKendaraanTable extends Migration
     {
         Schema::create('kendaraan', function (Blueprint $table) {
             $table->increments('id_kendaraan');
+            $table->unsignedInteger('id_jenis_kendaraan');
             $table->unsignedInteger('id_pelanggan');
             $table->string('no_plat')->unique();
             $table->string('createdBy')->nullable();
