@@ -13,6 +13,7 @@ class Kendaraan extends Model
     protected $primaryKey = 'id_kendaraan';
     protected $guarded = [];
     protected $fillable = [
-        'id_pelanggan'
+        'id_pelanggan',
+        'id_jenis_kendaraan'
     ];
 }

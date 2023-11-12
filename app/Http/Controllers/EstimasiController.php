@@ -8,6 +8,8 @@ use App\Models\Kendaraan;
 use App\Models\Pelanggan;
 use App\Models\TipePengurusan;
 use App\Models\Wilayah;
+use App\Models\BiayaAdmin;
+use App\Models\JenisKendaraan;
 use Illuminate\Support\Facades\Redirect;
 
 class EstimasiController extends Controller
@@ -52,8 +54,10 @@ class EstimasiController extends Controller
         $wilayah = Wilayah::all()->pluck('nama_wilayah', 'id_wilayah');
         $kendaraan = Kendaraan::all()->pluck('no_plat', 'id_kendaraan');
         $pelanggan = Pelanggan::all()->pluck('nama_pelanggan', 'id_pelanggan');
+        $jenis_kendaraan = JenisKendaraan::all()->pluck('jenis', 'id_jenis_kendaraan');
+        $biaya_admin = BiayaAdmin::all()->pluck('nama_admin', 'id_biaya_admin');
 
-        return view('estimasi.create', compact('tipe_pengurusan', 'wilayah', 'kendaraan', 'pelanggan'));
+        return view('estimasi.create', compact('tipe_pengurusan', 'wilayah', 'kendaraan', 'jenis_kendaraan', 'biaya_admin', 'pelanggan'));
     }
 
     /**

@@ -16,6 +16,7 @@ class Estimasi extends Model
         'id_kendaraan',
         'id_tipe_pengurusan',
         'id_wilayah',
+        'id_jenis_kendaraan',
         'id_pelanggan',
     ];
 }
