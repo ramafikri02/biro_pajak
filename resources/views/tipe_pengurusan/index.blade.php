@@ -21,7 +21,7 @@
                     <thead>
                         <th width="5%">No</th>
                         <th>Nama Tipe Pengurusan</th>
-                        <th>Tanggal DIbuat</th>
+                        <th>Biaya</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -49,9 +49,15 @@
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'nama_pengurusan'},
-                {data: 'created_at'},
+                {data: 'biaya_proses'},
                 {data: 'aksi', searchable: false, sortable: false},
-            ]
+            ],
+            columnDefs: [
+                {
+                    targets: 2,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+            ],
         });
 
         $('#modal-form').validator().on('submit', function (e) {

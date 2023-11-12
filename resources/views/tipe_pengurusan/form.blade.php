@@ -18,6 +18,13 @@
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label for="biaya_proses" class="col-lg-2 col-lg-offset-1 control-label">Biaya Proses</label>
+                        <div class="col-lg-6">
+                            <input type="text" name="biaya_proses" id="biaya_proses" class="form-control digits" required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-sm btn-flat btn-primary"><i class="fa fa-save"></i> Simpan</button>
@@ -27,3 +34,21 @@
         </form>
     </div>
 </div>
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+<script>
+
+
+    // window.cleave = new Cleave('.digits', {
+    //     numeral: true,
+    //     numeralThousandsGroupStyle: 'thousand'
+    // });
+    $('.digits').each(function (index, ele) {
+    var cleaveCustom = new Cleave(ele, {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+        });
+    });
+</script>
+@endpush

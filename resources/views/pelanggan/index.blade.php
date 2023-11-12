@@ -22,7 +22,6 @@
                         <th width="5%">No</th>
                         <th>Kode Pelanggan</th>
                         <th>Nama Pelanggan</th>
-                        <th>Tanggal DIbuat</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -51,7 +50,6 @@
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'kode_pelanggan'},
                 {data: 'nama_pelanggan'},
-                {data: 'created_at'},
                 {data: 'aksi', searchable: false, sortable: false},
             ]
         });

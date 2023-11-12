@@ -33,88 +33,82 @@
                             <span class="help-block with-errors"></span>
                         </div>
                     </div> -->
-                    <div class="form-group row">
-                        <label for="id_kendaraan" class="col-lg-2 col-lg-offset-1 control-label">Nomor Plat</label>
-                        <div class="col-md-2">
-                            <select name="id_kendaraan" id="id_kendaraan" class="form-control" required>
-                                <option value="">Pilih Kendaraan</option>
-                                @foreach ($kendaraan as $key => $item)
-                                <option value="{{ $key }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
-                            <span class="help-block with-errors"></span>
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="id_kendaraan" class="col-lg-2 col-lg-offset-1 control-label">Nomor Plat</label>
+                            <div class="col-md-2">
+                                <select name="id_kendaraan" id="id_kendaraan" class="form-control" required>
+                                    <option value="">Pilih Kendaraan</option>
+                                    @foreach ($kendaraan as $key => $item)
+                                    <option value="{{ $key }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="help-block with-errors"></span>
+                            </div>
+                            <label for="nilai_pkb" class="col-lg-2 col-lg-offset-1 control-label">Nilai PKB</label>
+                            <div class="col-md-2">
+                                <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required >
+                                <span class="help-block with-errors"></span>
+                            </div>
+                            <label for="swdkllj" class="col-lg-2 col-lg-offset-1 control-label">SWDKLLJ</label>
+                            <div class="col-md-2">
+                                <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
+                                <span class="help-block with-errors"></span>
+                            </div>
+                            <label for="masa_berlaku_stnk" class="col-lg-2 col-lg-offset-1 control-label">Masa berlaku STNK</label>
+                            <div class="col-md-2">
+                                <input type="text" name="masa_berlaku_stnk" id="masa_berlaku_stnk" class="form-control datepicker" required autofocus
+                                    style="border-radius: 0 !important;" >
+                                <span class="help-block with-errors"></span>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="nilai_pkb" class="col-lg-2 col-lg-offset-1 control-label">Nilai PKB</label>
-                        <div class="col-md-2">
-                            <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required >
-                            <span class="help-block with-errors"></span>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="id_tipe_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Tipe Pengurusan</label>
+                            <div class="col-md-2">
+                                    <select name="id_tipe_pengurusan" id="id_tipe_pengurusan" class="form-control" required>
+                                        <option value="">Pilih Tipe Pengurusan</option>
+                                        @foreach ($tipe_pengurusan as $key => $item)
+                                        <option value="{{ $key }}">{{ $item }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="help-block with-errors"></span>
+                                </div>
+                            <label for="id_wilayah" class="col-lg-2 col-lg-offset-1 control-label">Wilayah</label>
+                            <div class="col-md-2">
+                                <select name="id_wilayah" id="id_wilayah" class="form-control" required>
+                                    <option value="">Pilih Wilayah</option>
+                                    @foreach ($wilayah as $key => $item)
+                                    <option value="{{ $key }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="help-block with-errors"></span>
+                            </div>
+                            <label for="id_jenis_kendaraan" class="col-lg-2 col-lg-offset-1 control-label">Jenis Kendaraan</label>
+                            <div class="col-md-2">
+                                <select name="id_jenis_kendaraan" id="id_jenis_kendaraan" class="form-control" required>
+                                    <option value="">Pilih Jenis Kendaraan</option>
+                                    @foreach ($jenis_kendaraan as $key => $item)
+                                    <option value="{{ $key }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="help-block with-errors"></span>
+                            </div>
+                            <label for="id_pelanggan" class="col-lg-2 col-lg-offset-1 control-label">Pelanggan</label>
+                            <div class="col-md-2">
+                                <select name="id_pelanggan" id="id_pelanggan" class="form-control" required>
+                                    <option value="">Pilih Pelanggan</option>
+                                    @foreach ($pelanggan as $key => $item)
+                                    <option value="{{ $key }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                                <span class="help-block with-errors"></span>
+                            </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <label for="swdkllj" class="col-lg-2 col-lg-offset-1 control-label">SWDKLLJ</label>
-                        <div class="col-md-2">
-                            <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="masa_berlaku_stnk" class="col-lg-2 col-lg-offset-1 control-label">Masa berlaku STNK</label>
-                        <div class="col-md-2">
-                            <input type="text" name="masa_berlaku_stnk" id="masa_berlaku_stnk" class="form-control datepicker" required autofocus
-                                style="border-radius: 0 !important;" >
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="id_tipe_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Tipe Pengurusan</label>
-                        <div class="col-md-2">
-                            <select name="id_tipe_pengurusan" id="id_tipe_pengurusan" class="form-control" required>
-                                <option value="">Pilih Tipe Pengurusan</option>
-                                @foreach ($tipe_pengurusan as $key => $item)
-                                <option value="{{ $key }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="id_wilayah" class="col-lg-2 col-lg-offset-1 control-label">Wilayah</label>
-                        <div class="col-md-2">
-                            <select name="id_wilayah" id="id_wilayah" class="form-control" required>
-                                <option value="">Pilih Wilayah</option>
-                                @foreach ($wilayah as $key => $item)
-                                <option value="{{ $key }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="jenis_kendaraan" class="col-lg-2 col-lg-offset-1 control-label">Jenis Kendaraan</label>
-                        <div class="col-md-2">
-                            <select name="jenis_kendaraan" id="jenis_kendaraan" class="form-control" required>
-                                <option value="">Pilih Jenis Kendaraan</option>
-                                <option value="r2">Roda 2</option>
-                                <option value="r4">Roda 4</option>
-                            </select>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="id_pelanggan" class="col-lg-2 col-lg-offset-1 control-label">Pelanggan</label>
-                        <div class="col-md-2">
-                            <select name="id_pelanggan" id="id_pelanggan" class="form-control" required>
-                                <option value="">Pilih Pelanggan</option>
-                                @foreach ($pelanggan as $key => $item)
-                                <option value="{{ $key }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
-                            <span class="help-block with-errors"></span>
-                        </div>
-                    </div>
-                </div>
                 <div class="box-footer text-right">
                     <button type="button" class="btn btn-sm btn-flat btn-success" id="addRow"><i class="fa fa-percent"></i> Hitung</button>
                     <div class="box-body table-responsive text-left">
@@ -184,15 +178,15 @@
         if (difference_year > 0) {
             for (var i = 0; i < difference_year; i++) {
                 const tahun_pajak = new Date(new Date(document.forms["FormName"]["masa_berlaku_stnk"].value).setFullYear(new Date(document.forms["FormName"]["masa_berlaku_stnk"].value).getFullYear() + i + 1))
-                    nilai_pkb = parseInt(document.forms["FormName"]["nilai_pkb"].value),
-                    swdkllj = parseInt(document.forms["FormName"]["swdkllj"].value),
-                    jenis_kendaraan = document.forms["FormName"]["jenis_kendaraan"].value
+                    nilai_pkb = parseInt(document.forms["FormName"]["nilai_pkb"].value.replace(',','')),
+                    swdkllj = parseInt(document.forms["FormName"]["swdkllj"].value.replace(',','')),
+                    jenis_kendaraan = document.forms["FormName"]["id_jenis_kendaraan"].value
                 
                 let rumus_denda_swdkllj = 0
 
-                if (jenis_kendaraan == "r2") {
+                if (jenis_kendaraan == "1") {
                     rumus_denda_swdkllj = 8000
-                } else if (jenis_kendaraan == "r4") {
+                } else if (jenis_kendaraan == "2") {
                     rumus_denda_swdkllj = 25000
                 }
 
@@ -237,6 +231,28 @@
             bInfo: false,
             bLengthChange: false,
             bSort: false,
+            columnDefs: [
+                {
+                    targets: 1,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 2,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 3,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 4,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 5,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+            ],
         })
 
         document.getElementById("admin_stnk").value = admin_stnk

@@ -23,7 +23,6 @@
                         <th>Nomor Plat</th>
                         <th>Jenis Kendaraan</th>
                         <th>Pelanggan</th>
-                        <th>Tanggal DIbuat</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -53,7 +52,6 @@
                 {data: 'no_plat'},
                 {data: 'id_jenis_kendaraan'},
                 {data: 'id_pelanggan'},
-                {data: 'created_at'},
                 {data: 'aksi', searchable: false, sortable: false},
             ]
         });
