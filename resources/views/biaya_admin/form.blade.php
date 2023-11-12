@@ -12,21 +12,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="nama_pelanggan" class="col-lg-2 col-lg-offset-1 control-label">Nama Pelanggan</label>
+                        <label for="nama_admin" class="col-lg-2 col-lg-offset-1 control-label">Nama Admin</label>
                         <div class="col-lg-6">
-                            <input type="text" name="nama_pelanggan" id="nama_pelanggan" class="form-control" required autofocus>
+                            <input type="text" name="nama_admin" id="nama_admin" class="form-control" required autofocus>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="id_biaya_admin" class="col-lg-2 col-lg-offset-1 control-label">Admin</label>
+                        <label for="biaya" class="col-lg-2 col-lg-offset-1 control-label">Biaya</label>
                         <div class="col-lg-6">
-                            <select name="id_biaya_admin" id="id_biaya_admin" class="form-control" required>
-                                <option value="">Pilih Admin</option>
-                                @foreach ($biaya_admin as $key => $item)
-                                <option value="{{ $key }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="biaya" id="biaya" class="form-control digits" required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -39,3 +34,21 @@
         </form>
     </div>
 </div>
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+<script>
+
+
+    // window.cleave = new Cleave('.digits', {
+    //     numeral: true,
+    //     numeralThousandsGroupStyle: 'thousand'
+    // });
+    $('.digits').each(function (index, ele) {
+    var cleaveCustom = new Cleave(ele, {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+    });
+});
+</script>
+@endpush

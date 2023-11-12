@@ -11,6 +11,7 @@ use App\Models\Wilayah;
 use App\Models\BiayaAdmin;
 use App\Models\JenisKendaraan;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class EstimasiController extends Controller
 {
@@ -78,12 +79,12 @@ class EstimasiController extends Controller
         $estimasi->id_wilayah = $request->id_wilayah;
         $estimasi->jenis_kendaraan = $request->jenis_kendaraan;
         $estimasi->id_pelanggan = $request->id_pelanggan;
-        $estimasi->admin_stnk = $request->admin_stnk;
-        $estimasi->admin_tnkb = $request->admin_tnkb;
-        $estimasi->biaya_proses = $request->biaya_proses;
-        $estimasi->biaya_admin_pelanggan = $request->biaya_admin_pelanggan;
-        $estimasi->upping = $request->upping;
-        $estimasi->biaya_estimasi = $request->biaya_estimasi;
+        $estimasi->admin_stnk = Str::replace(',', '', $request->admin_stnk);
+        $estimasi->admin_tnkb = Str::replace(',', '', $request->admin_tnkb);
+        $estimasi->biaya_proses = Str::replace(',', '', $request->biaya_proses);
+        $estimasi->biaya_admin_pelanggan = Str::replace(',', '', $request->biaya_admin_pelanggan);
+        $estimasi->upping = Str::replace(',', '', $request->upping);
+        $estimasi->biaya_estimasi = Str::replace(',', '', $request->biaya_estimasi);
         $estimasi->save();
 
         return Redirect::to('/estimasi');
@@ -133,12 +134,12 @@ class EstimasiController extends Controller
         $estimasi->id_wilayah = $request->id_wilayah;
         $estimasi->jenis_kendaraan = $request->jenis_kendaraan;
         $estimasi->id_pelanggan = $request->id_pelanggan;
-        $estimasi->admin_stnk = $request->admin_stnk;
-        $estimasi->admin_tnkb = $request->admin_tnkb;
-        $estimasi->biaya_proses = $request->biaya_proses;
-        $estimasi->biaya_admin_pelanggan = $request->biaya_admin_pelanggan;
-        $estimasi->upping = $request->upping;
-        $estimasi->biaya_estimasi = $request->biaya_estimasi;
+        $estimasi->admin_stnk = Str::replace(',', '', $request->admin_stnk);
+        $estimasi->admin_tnkb = Str::replace(',', '', $request->admin_tnkb);
+        $estimasi->biaya_proses = Str::replace(',', '', $request->biaya_proses);
+        $estimasi->biaya_admin_pelanggan = Str::replace(',', '', $request->biaya_admin_pelanggan);
+        $estimasi->upping = Str::replace(',', '', $request->upping);
+        $estimasi->biaya_estimasi = Str::replace(',', '', $request->biaya_estimasi);
         $estimasi->update();
 
         return response()->json('Data berhasil disimpan', 200);

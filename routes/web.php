@@ -3,7 +3,9 @@
 use App\Http\Controllers\{
     DashboardController,
     WilayahController,
+    BiayaAdminController,
     PelangganController,
+    JenisKendaraanController,
     KendaraanController,
     TipePengurusanController,
     EstimasiController,
@@ -48,8 +50,14 @@ Route::group(['middleware' => 'auth'], function () {
         // Route::put('/wilayah/update', [WilayahController::class, 'update'])->name('wilayah.update');
         Route::resource('/wilayah', WilayahController::class);
 
+        Route::get('/biaya_admin/data', [BiayaAdminController::class, 'data'])->name('biaya_admin.data');
+        Route::resource('/biaya_admin', BiayaAdminController::class);
+        
         Route::get('/pelanggan/data', [PelangganController::class, 'data'])->name('pelanggan.data');
         Route::resource('/pelanggan', PelangganController::class);
+
+        Route::get('/jenis_kendaraan/data', [JenisKendaraanController::class, 'data'])->name('jenis_kendaraan.data');
+        Route::resource('/jenis_kendaraan', JenisKendaraanController::class);
 
         Route::get('/kendaraan/data', [KendaraanController::class, 'data'])->name('kendaraan.data');
         Route::resource('/kendaraan', KendaraanController::class);

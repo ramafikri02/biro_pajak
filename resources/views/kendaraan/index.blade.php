@@ -21,6 +21,7 @@
                     <thead>
                         <th width="5%">No</th>
                         <th>Nomor Plat</th>
+                        <th>Jenis Kendaraan</th>
                         <th>Pelanggan</th>
                         <th>Tanggal DIbuat</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
@@ -50,6 +51,7 @@
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'no_plat'},
+                {data: 'id_jenis_kendaraan'},
                 {data: 'id_pelanggan'},
                 {data: 'created_at'},
                 {data: 'aksi', searchable: false, sortable: false},

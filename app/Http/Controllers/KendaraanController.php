@@ -19,7 +19,7 @@ class KendaraanController extends Controller
         $pelanggan = Pelanggan::all()->pluck('nama_pelanggan', 'id_pelanggan');
         $jenis_kendaraan = JenisKendaraan::all()->pluck('jenis', 'id_jenis_kendaraan');
 
-        return view('kendaraan.index', compact('pelanggan'));
+        return view('kendaraan.index', compact('pelanggan', 'jenis_kendaraan'));
     }
 
     public function data()

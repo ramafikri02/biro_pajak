@@ -30,8 +30,18 @@
                 </a>
             </li>
             <li>
+                <a href="{{ route('biaya_admin.index') }}">
+                    <i class="fa fa-bank"></i> <span>Biaya Admin</span>
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('pelanggan.index') }}">
                     <i class="fa fa-user-plus"></i> <span>Pelanggan</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('jenis_kendaraan.index') }}">
+                    <i class="fa fa-road"></i> <span>Jenis Kendaraan</span>
                 </a>
             </li>
             <li>
@@ -70,7 +80,7 @@
                     <i class="fa fa-calculator"></i> <span>Estimasi</span>
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a href="{{ route('pengeluaran.index') }}">
                     <i class="fa fa-money"></i> <span>Pengeluaran</span>
                 </a>
@@ -100,7 +110,7 @@
                 <a href="{{ route('laporan.index') }}">
                     <i class="fa fa-file-pdf-o"></i> <span>Laporan</span>
                 </a>
-            </li>
+            </li> -->
             <li class="header">SYSTEM</li>
             <li>
                 <a href="{{ route('user.index') }}">

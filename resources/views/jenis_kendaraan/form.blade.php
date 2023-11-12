@@ -12,33 +12,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="no_plat" class="col-lg-2 col-lg-offset-1 control-label">Nomor Plat</label>
+                        <label for="jenis" class="col-lg-2 col-lg-offset-1 control-label">Jenis Kendaraan</label>
                         <div class="col-lg-6">
-                            <input type="text" name="no_plat" id="no_plat" class="form-control" required autofocus>
+                            <input type="text" name="jenis" id="jenis" class="form-control" required autofocus>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="id_jenis_kendaraan" class="col-lg-2 col-lg-offset-1 control-label">Jenis Kendaraan</label>
+                        <label for="admin_stnk" class="col-lg-2 col-lg-offset-1 control-label">Admin STNK</label>
                         <div class="col-lg-6">
-                            <select name="id_jenis_kendaraan" id="id_jenis_kendaraan" class="form-control" required>
-                                <option value="">Pilih Jenis Kendaraan</option>
-                                @foreach ($jenis_kendaraan as $key => $item)
-                                <option value="{{ $key }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="admin_stnk" id="admin_stnk" class="form-control digits" required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="id_pelanggan" class="col-lg-2 col-lg-offset-1 control-label">Pelanggan</label>
+                        <label for="admin_tnkb" class="col-lg-2 col-lg-offset-1 control-label">Admin TNKB</label>
                         <div class="col-lg-6">
-                            <select name="id_pelanggan" id="id_pelanggan" class="form-control" required>
-                                <option value="">Pilih Pelanggan</option>
-                                @foreach ($pelanggan as $key => $item)
-                                <option value="{{ $key }}">{{ $item }}</option>
-                                @endforeach
-                            </select>
+                            <input type="text" name="admin_tnkb" id="admin_tnkb" class="form-control digits" required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -51,3 +41,21 @@
         </form>
     </div>
 </div>
+
+@push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
+<script>
+
+
+    // window.cleave = new Cleave('.digits', {
+    //     numeral: true,
+    //     numeralThousandsGroupStyle: 'thousand'
+    // });
+    $('.digits').each(function (index, ele) {
+    var cleaveCustom = new Cleave(ele, {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+        });
+    });
+</script>
+@endpush

@@ -22,7 +22,6 @@
                         <th width="5%">No</th>
                         <th>Kode Pelanggan</th>
                         <th>Nama Pelanggan</th>
-                        <th>Admin</th>
                         <th>Tanggal DIbuat</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
@@ -52,7 +51,6 @@
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'kode_pelanggan'},
                 {data: 'nama_pelanggan'},
-                {data: 'admin'},
                 {data: 'created_at'},
                 {data: 'aksi', searchable: false, sortable: false},
             ]
@@ -95,7 +93,7 @@
         $.get(url)
             .done((response) => {
                 $('#modal-form [name=nama_pelanggan]').val(response.nama_pelanggan);
-                $('#modal-form [name=admin]').val(response.admin);
+                $('#modal-form [name=id_biaya_admin]').val(response.id_biaya_admin);
             })
             .fail((errors) => {
                 alert('Tidak dapat menampilkan data');

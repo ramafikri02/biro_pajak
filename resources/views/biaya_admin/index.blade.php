@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Daftar Wilayah
+    Daftar Biaya Admin
 @endsection
 
 @section('breadcrumb')
     @parent
-    <li class="active">Daftar Wilayah</li>
+    <li class="active">Daftar Biaya Admin</li>
 @endsection
 
 @section('content')
@@ -14,13 +14,14 @@
     <div class="col-lg-12">
         <div class="box">
             <div class="box-header with-border">
-                <button onclick="addForm('{{ route('wilayah.store') }}')" class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
+                <button onclick="addForm('{{ route('biaya_admin.store') }}')" class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
             </div>
             <div class="box-body table-responsive">
                 <table class="table table-stiped table-bordered">
                     <thead>
                         <th width="5%">No</th>
-                        <th>Wilayah</th>
+                        <th>Nama Admin</th>
+                        <th>Biaya</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -29,7 +30,7 @@
     </div>
 </div>
 
-@includeIf('wilayah.form')
+@includeIf('biaya_admin.form')
 @endsection
 
 @push('scripts')
@@ -43,13 +44,20 @@
             serverSide: true,
             autoWidth: false,
             ajax: {
-                url: '{{ route('wilayah.data') }}',
+                url: '{{ route('biaya_admin.data') }}',
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
-                {data: 'nama_wilayah'},
+                {data: 'nama_admin'},
+                {data: 'biaya'},
                 {data: 'aksi', searchable: false, sortable: false},
-            ]
+            ],
+            columnDefs: [
+                {
+                    targets: 2,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+            ],
         });
 
         $('#modal-form').validator().on('submit', function (e) {
@@ -74,7 +82,7 @@
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=nama_wilayah]').focus();
+        $('#modal-form [name=nama_admin]').focus();
     }
 
     function editForm(url) {
@@ -84,11 +92,11 @@
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('put');
-        $('#modal-form [name=nama_wilayah]').focus();
+        $('#modal-form [name=nama_admin]').focus();
 
         $.get(url)
             .done((response) => {
-                $('#modal-form [name=nama_wilayah]').val(response.nama_wilayah);
+                $('#modal-form [name=nama_admin]').val(response.nama_admin);
             })
             .fail((errors) => {
                 alert('Tidak dapat menampilkan data');

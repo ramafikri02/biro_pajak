@@ -48,14 +48,14 @@
                     <div class="form-group row">
                         <label for="nilai_pkb" class="col-lg-2 col-lg-offset-1 control-label">Nilai PKB</label>
                         <div class="col-md-2">
-                            <input type="number" name="nilai_pkb" id="nilai_pkb" class="form-control" required >
+                            <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required >
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label for="swdkllj" class="col-lg-2 col-lg-offset-1 control-label">SWDKLLJ</label>
                         <div class="col-md-2">
-                            <input type="number" name="swdkllj" id="swdkllj" class="form-control" required >
+                            <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -144,13 +144,22 @@
 
 @push('scripts')
 <script src="{{ asset('/AdminLTE-2/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"></script>
 <script>
+    $('.digits').each(function (index, ele) {
+    var cleaveCustom = new Cleave(ele, {
+        numeral: true,
+        numeralThousandsGroupStyle: 'thousand'
+        });
+    });
+
     $(function () {
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd',
             autoclose: true
         });
     });
+    
 
     let admin_stnk = 1000,
         admin_tnkb = 1000,
