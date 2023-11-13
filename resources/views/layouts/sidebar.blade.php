@@ -54,6 +54,12 @@
                     <i class="fa fa-file"></i> <span>Jenis Pengurusan</span>
                 </a>
             </li>
+            <li class="header">TRANSAKSI</li>
+            <li>
+                <a href="{{ route('estimasi.index') }}">
+                    <i class="fa fa-calculator"></i> <span>Estimasi</span>
+                </a>
+            </li>
             <!-- <li>
                 <a href="{{ route('kategori.index') }}">
                     <i class="fa fa-cube"></i> <span>Kategori</span>

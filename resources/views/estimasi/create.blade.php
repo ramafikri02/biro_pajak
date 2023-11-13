@@ -199,8 +199,8 @@
         let dataRow = []
 
         if (difference_year > 0) {
-            for (var i = 0; i < difference_year; i++) {
-                const tahun_pajak = new Date(new Date(document.forms["FormName"]["masa_berlaku_stnk"].value).setFullYear(new Date(document.forms["FormName"]["masa_berlaku_stnk"].value).getFullYear() + i + 1))
+            for (var i = 0; i < difference_year + 1; i++) {
+                const tahun_pajak = new Date(new Date(document.forms["FormName"]["masa_berlaku_stnk"].value).setFullYear(new Date(document.forms["FormName"]["masa_berlaku_stnk"].value).getFullYear() + i))
                     nilai_pkb = parseInt(document.forms["FormName"]["nilai_pkb"].value.replaceAll(',','')),
                     swdkllj = parseInt(document.forms["FormName"]["swdkllj"].value.replaceAll(',','')),
                     jenis_kendaraan = document.forms["FormName"]["id_jenis_kendaraan"].value
@@ -222,17 +222,14 @@
                     denda_pkb = (nilai_pkb * 24) / 100
                 }
 
-                if (difference_month > 3) {
-                    denda_swdkllj = rumus_denda_swdkllj * 3
-                }
                 if (difference_month > 6) {
-                    denda_swdkllj = rumus_denda_swdkllj * 6
+                    denda_swdkllj = rumus_denda_swdkllj * 2
                 }
                 if (difference_month > 9) {
-                    denda_swdkllj = rumus_denda_swdkllj * 9
+                    denda_swdkllj = rumus_denda_swdkllj * 3
                 }
                 if (difference_month > 12) {
-                    denda_swdkllj = rumus_denda_swdkllj * 12
+                    denda_swdkllj = rumus_denda_swdkllj * 4
                 }
 
                 const objRow = [
@@ -241,7 +238,7 @@
                     denda_pkb,
                     swdkllj,
                     denda_swdkllj,
-                    nilai_pkb + swdkllj
+                    nilai_pkb + denda_pkb + swdkllj + denda_swdkllj
                 ]
                 dataRow.push(objRow)
             }
