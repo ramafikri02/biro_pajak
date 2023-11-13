@@ -16,14 +16,14 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>{{ $kategori }}</h3>
+                <h2>Estimasi</h2>
 
-                <p>Total Kategori</p>
+                <!-- <p>Total Kategori</p> -->
             </div>
             <div class="icon">
-                <i class="fa fa-cube"></i>
+                <i class="fa fa-calculator"></i>
             </div>
-            <a href="{{ route('kategori.index') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ route('estimasi.create') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -31,14 +31,14 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3>{{ $produk }}</h3>
+                <h2>Tipe pengurusan</h2>
 
-                <p>Total Produk</p>
+                <!-- <p>Total Produk</p> -->
             </div>
             <div class="icon">
-                <i class="fa fa-cubes"></i>
+                <i class="fa fa-file"></i>
             </div>
-            <a href="{{ route('produk.index') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ route('tipe_pengurusan.index') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -46,14 +46,14 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>{{ $member }}</h3>
+                <h2>Biaya Admin</h2>
 
-                <p>Total Member</p>
+                <!-- <p>Total Member</p> -->
             </div>
             <div class="icon">
-                <i class="fa fa-id-card"></i>
+                <i class="fa fa-bank"></i>
             </div>
-            <a href="{{ route('member.index') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ route('biaya_admin.index') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -61,44 +61,44 @@
         <!-- small box -->
         <div class="small-box bg-red">
             <div class="inner">
-                <h3>{{ $supplier }}</h3>
+                <h2>Pelanggan</h2>
 
-                <p>Total Supplier</p>
+                <!-- <p>Total Supplier</p> -->
             </div>
             <div class="icon">
-                <i class="fa fa-truck"></i>
+                <i class="fa fa-people-plus"></i>
             </div>
-            <a href="{{ route('supplier.index') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="{{ route('pelanggan.index') }}" class="small-box-footer">Lihat <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
 </div>
 <!-- /.row -->
 <!-- Main row -->
-<div class="row">
+<!-- <div class="row">
     <div class="col-lg-12">
         <div class="box">
             <div class="box-header with-border">
                 <h3 class="box-title">Grafik Pendapatan {{ tanggal_indonesia($tanggal_awal, false) }} s/d {{ tanggal_indonesia($tanggal_akhir, false) }}</h3>
-            </div>
+            </div> -->
             <!-- /.box-header -->
-            <div class="box-body">
+            <!-- <div class="box-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <div class="chart">
+                        <div class="chart"> -->
                             <!-- Sales Chart Canvas -->
-                            <canvas id="salesChart" style="height: 180px;"></canvas>
-                        </div>
+                            <!-- <canvas id="salesChart" style="height: 180px;"></canvas> -->
+                        <!-- </div> -->
                         <!-- /.chart-responsive -->
-                    </div>
-                </div>
+                    <!-- </div>
+                </div> -->
                 <!-- /.row -->
-            </div>
-        </div>
+            <!-- </div>
+        </div> -->
         <!-- /.box -->
-    </div>
+    <!-- </div> -->
     <!-- /.col -->
-</div>
+<!-- </div> -->
 <!-- /.row (main row) -->
 @endsection
 

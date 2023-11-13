@@ -15,8 +15,8 @@ class BuatEstimasiTable extends Migration
     {
         Schema::create('estimasi', function (Blueprint $table) {
             $table->increments('id_estimasi');
-            // $table->string('no_plat');
-            $table->unsignedInteger('id_kendaraan');
+            $table->string('no_plat');
+            // $table->unsignedInteger('id_kendaraan');
             $table->integer('nilai_pkb');
             $table->integer('swdkllj');
             $table->timestamp('masa_berlaku_stnk');

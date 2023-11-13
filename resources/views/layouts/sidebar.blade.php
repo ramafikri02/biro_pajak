@@ -51,7 +51,7 @@
             </li>
             <li>
                 <a href="{{ route('tipe_pengurusan.index') }}">
-                    <i class="fa fa-file"></i> <span>Tipe Pengurusan</span>
+                    <i class="fa fa-file"></i> <span>Jenis Pengurusan</span>
                 </a>
             </li>
             <!-- <li>
@@ -74,12 +74,6 @@
                     <i class="fa fa-truck"></i> <span>Supplier</span>
                 </a>
             </li> -->
-            <li class="header">TRANSAKSI</li>
-            <li>
-                <a href="{{ route('estimasi.index') }}">
-                    <i class="fa fa-calculator"></i> <span>Estimasi</span>
-                </a>
-            </li>
             <!-- <li>
                 <a href="{{ route('pengeluaran.index') }}">
                     <i class="fa fa-money"></i> <span>Pengeluaran</span>
@@ -123,7 +117,13 @@
                 </a>
             </li>
             @else
+            <li class="header">TRANSAKSI</li>
             <li>
+                <a href="{{ route('estimasi.index') }}">
+                    <i class="fa fa-calculator"></i> <span>Estimasi</span>
+                </a>
+            </li>
+            <!-- <li>
                 <a href="{{ route('transaksi.index') }}">
                     <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Aktif</span>
                 </a>
@@ -132,7 +132,7 @@
                 <a href="{{ route('transaksi.baru') }}">
                     <i class="fa fa-cart-arrow-down"></i> <span>Transaksi Baru</span>
                 </a>
-            </li>
+            </li> -->
             @endif
         </ul>
     </section>

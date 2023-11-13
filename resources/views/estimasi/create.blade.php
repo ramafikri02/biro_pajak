@@ -35,8 +35,8 @@
                     </div> -->
                     <div class="form-row">
                         <div class="col">
-                            <label for="id_kendaraan" class="col-lg-2 col-lg-offset-1 control-label">Nomor Plat</label>
-                            <div class="col-md-2">
+                            <label for="no_plat" class="col-lg-2 col-lg-offset-1 control-label">Nomor Plat</label>
+                            <!-- <div class="col-md-2">
                                 <select name="id_kendaraan" id="id_kendaraan" class="form-control" required>
                                     <option value="">Pilih Kendaraan</option>
                                     @foreach ($kendaraan as $key => $item)
@@ -44,18 +44,32 @@
                                     @endforeach
                                 </select>
                                 <span class="help-block with-errors"></span>
+                            </div> -->
+                            <div class="col-md-2">
+                                <input type="text" name="no_plat" id="no_plat" class="form-control" required >
+                                <span class="help-block with-errors"></span>
                             </div>
+                            <!-- <label for="swdkllj" class="col-lg-2 col-lg-offset-1 control-label">SWDKLLJ</label>
+                            <div class="col-md-2">
+                                <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
+                                <span class="help-block with-errors"></span>
+                            </div> -->
+                            <label for="id_tipe_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Jenis Pengurusan</label>
+                            <div class="col-md-2">
+                                    <select name="id_tipe_pengurusan" id="id_tipe_pengurusan" class="form-control" required>
+                                        <option value="">Pilih Tipe Pengurusan</option>
+                                        @foreach ($tipe_pengurusan as $key => $item)
+                                        <option value="{{ $key }}">{{ $item }}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="help-block with-errors"></span>
+                                </div>
                             <label for="nilai_pkb" class="col-lg-2 col-lg-offset-1 control-label">Nilai PKB</label>
                             <div class="col-md-2">
                                 <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required >
                                 <span class="help-block with-errors"></span>
                             </div>
-                            <label for="swdkllj" class="col-lg-2 col-lg-offset-1 control-label">SWDKLLJ</label>
-                            <div class="col-md-2">
-                                <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
-                                <span class="help-block with-errors"></span>
-                            </div>
-                            <label for="masa_berlaku_stnk" class="col-lg-2 col-lg-offset-1 control-label">Masa berlaku STNK</label>
+                            <label for="masa_berlaku_stnk" class="col-lg-2 col-lg-offset-1 control-label">Masa berlaku Pajak di STNK</label>
                             <div class="col-md-2">
                                 <input type="text" name="masa_berlaku_stnk" id="masa_berlaku_stnk" class="form-control datepicker" required autofocus
                                     style="border-radius: 0 !important;" >
@@ -66,7 +80,12 @@
 
                     <div class="form-row">
                         <div class="col">
-                            <label for="id_tipe_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Tipe Pengurusan</label>
+                        <label for="swdkllj" class="col-lg-2 col-lg-offset-1 control-label">SWDKLLJ</label>
+                            <div class="col-md-2">
+                                <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
+                                <span class="help-block with-errors"></span>
+                            </div>
+                            <!-- <label for="id_tipe_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Tipe Pengurusan</label>
                             <div class="col-md-2">
                                     <select name="id_tipe_pengurusan" id="id_tipe_pengurusan" class="form-control" required>
                                         <option value="">Pilih Tipe Pengurusan</option>
@@ -75,7 +94,7 @@
                                         @endforeach
                                     </select>
                                     <span class="help-block with-errors"></span>
-                                </div>
+                                </div> -->
                             <label for="id_wilayah" class="col-lg-2 col-lg-offset-1 control-label">Wilayah</label>
                             <div class="col-md-2">
                                 <select name="id_wilayah" id="id_wilayah" class="form-control" required>
@@ -148,6 +167,10 @@
     });
 
     $(function () {
+        $('#no_plat').keyup(function() {
+            this.value = this.value.toUpperCase();
+        });
+
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd',
             autoclose: true
@@ -178,8 +201,8 @@
         if (difference_year > 0) {
             for (var i = 0; i < difference_year; i++) {
                 const tahun_pajak = new Date(new Date(document.forms["FormName"]["masa_berlaku_stnk"].value).setFullYear(new Date(document.forms["FormName"]["masa_berlaku_stnk"].value).getFullYear() + i + 1))
-                    nilai_pkb = parseInt(document.forms["FormName"]["nilai_pkb"].value.replace(',','')),
-                    swdkllj = parseInt(document.forms["FormName"]["swdkllj"].value.replace(',','')),
+                    nilai_pkb = parseInt(document.forms["FormName"]["nilai_pkb"].value.replaceAll(',','')),
+                    swdkllj = parseInt(document.forms["FormName"]["swdkllj"].value.replaceAll(',','')),
                     jenis_kendaraan = document.forms["FormName"]["id_jenis_kendaraan"].value
                 
                 let rumus_denda_swdkllj = 0

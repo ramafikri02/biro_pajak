@@ -22,7 +22,6 @@
                 <table class="table table-stiped table-bordered">
                     <thead>
                         <th width="5%">No</th>
-                        <th>ID Kendaraan</th>
                         <th>ID Pelanggan</th>
                         <th>ID Wilayah</th>
                         <th>Tanggal DIbuat</th>
@@ -52,7 +51,6 @@
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
-                {data: 'id_kendaraan'},
                 {data: 'id_pelanggan'},
                 {data: 'id_wilayah'},
                 {data: 'created_at'},

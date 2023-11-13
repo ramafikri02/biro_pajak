@@ -71,13 +71,13 @@ class EstimasiController extends Controller
     {
         $estimasi = new Estimasi();
         // $estimasi->no_plat = $request->no_plat;
-        $estimasi->id_kendaraan = $request->id_kendaraan;
-        $estimasi->nilai_pkb = $request->nilai_pkb;
-        $estimasi->swdkllj = $request->swdkllj;
+        $estimasi->no_plat = $request->no_plat;
+        $estimasi->nilai_pkb = Str::replace(',', '', $request->nilai_pkb);
+        $estimasi->swdkllj = Str::replace(',', '', $request->swdkllj);
         $estimasi->masa_berlaku_stnk = $request->masa_berlaku_stnk;
         $estimasi->id_tipe_pengurusan = $request->id_tipe_pengurusan;
         $estimasi->id_wilayah = $request->id_wilayah;
-        $estimasi->jenis_kendaraan = $request->jenis_kendaraan;
+        $estimasi->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $estimasi->id_pelanggan = $request->id_pelanggan;
         $estimasi->admin_stnk = Str::replace(',', '', $request->admin_stnk);
         $estimasi->admin_tnkb = Str::replace(',', '', $request->admin_tnkb);
@@ -126,13 +126,13 @@ class EstimasiController extends Controller
     {
         $estimasi = Estimasi::find($id);
         // $estimasi->no_plat = $request->no_plat;
-        $estimasi->id_kendaraan = $request->id_kendaraan;
-        $estimasi->nilai_pkb = $request->nilai_pkb;
-        $estimasi->swdkllj = $request->swdkllj;
+        $estimasi->no_plat = $request->no_plat;
+        $estimasi->nilai_pkb = Str::replace(',', '', $request->nilai_pkb);
+        $estimasi->swdkllj = Str::replace(',', '', $request->swdkllj);
         $estimasi->masa_berlaku_stnk = $request->masa_berlaku_stnk;
         $estimasi->id_tipe_pengurusan = $request->id_tipe_pengurusan;
         $estimasi->id_wilayah = $request->id_wilayah;
-        $estimasi->jenis_kendaraan = $request->jenis_kendaraan;
+        $estimasi->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $estimasi->id_pelanggan = $request->id_pelanggan;
         $estimasi->admin_stnk = Str::replace(',', '', $request->admin_stnk);
         $estimasi->admin_tnkb = Str::replace(',', '', $request->admin_tnkb);

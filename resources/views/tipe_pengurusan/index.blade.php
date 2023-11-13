@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Daftar Tipe Pengurusan
+    Daftar Jenis Pengurusan
 @endsection
 
 @section('breadcrumb')
     @parent
-    <li class="active">Daftar Tipe Pengurusan</li>
+    <li class="active">Daftar Jenis Pengurusan</li>
 @endsection
 
 @section('content')
@@ -20,7 +20,7 @@
                 <table class="table table-stiped table-bordered">
                     <thead>
                         <th width="5%">No</th>
-                        <th>Nama Tipe Pengurusan</th>
+                        <th>Nama Jenis Pengurusan</th>
                         <th>Biaya</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
