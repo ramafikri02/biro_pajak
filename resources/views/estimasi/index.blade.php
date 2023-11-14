@@ -19,12 +19,20 @@
                 </a>
             </div>
             <div class="box-body table-responsive">
-                <table class="tableOne table-stiped table-bordered">
+                <table class="table tableOne table-stiped table-bordered">
                     <thead>
                         <th width="5%">No</th>
-                        <th>ID Pelanggan</th>
-                        <th>ID Wilayah</th>
-                        <th>Tanggal DIbuat</th>
+                        <th>No Plat</th>
+                        <th>Nilai PKB</th>
+                        <th>Swdkllj</th>
+                        <th>Masa STNK</th>
+                        <th>Admin STNK</th>
+                        <th>Admin TNKB</th>
+                        <th>Biaya Proses</th>
+                        <th>Biaya Admin</th>
+                        <th>Upping</th>
+                        <th>Biaya Estimasi</th>
+                        <th>Tanggal Buat</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -58,8 +66,16 @@
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
-                {data: 'id_pelanggan'},
-                {data: 'id_wilayah'},
+                {data: 'no_plat'},
+                {data: 'nilai_pkb'},
+                {data: 'swdkllj'},
+                {data: 'masa_berlaku_stnk'},
+                {data: 'admin_stnk'},
+                {data: 'admin_tnkb'},
+                {data: 'biaya_proses'},
+                {data: 'biaya_admin_pelanggan'},
+                {data: 'upping'},
+                {data: 'biaya_estimasi'},
                 {
                 data: 'created_at',
                 render: function (data) {
