@@ -27,11 +27,21 @@
                                 <span class="help-block with-errors"></span>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        
+                       <div class="col-lg-6 me-4" style="padding-left: 2rem">
+                        <label for="id_pelanggan" class="control-label">Pelanggan</label>
+                        <select name="id_pelanggan" id="id_pelanggan" class="form-control" required onchange="setPelangganAdm()">
+                            <option value="">Pilih Pelanggan</option>
+                            @foreach ($pelanggan as $key => $item)
+                            <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                        <span class="help-block with-errors"></span>
+                       </div>
+                        <div class="col-lg-6 hidden">
                             <label for="no_plat" class="control-label">Id Upping</label>
                                 <select name="id_upping" id="id_upping" class="form-control" required
                                 onchange="setBiayaUpp()">
-                                <option value="">Pilih Biaya Upping</option>
                                 @foreach ($biaya_uppings as $key => $item)
                                 <option value="{{ $key }}">{{ $item }}</option>
                                 @endforeach
@@ -64,7 +74,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-6" style="padding-left: 5rem">
+                        <div class="col-lg-6" style="padding-left: 2.5rem">
                             <label for="masa_berlaku_stnk" class="control-label">Masa berlaku
                                 Pajak di STNK</label>
                                 <input type="text" name="masa_berlaku_stnk" id="masa_berlaku_stnk" class="form-control datepicker" required autofocus autocomplete="off"
@@ -72,7 +82,7 @@
                             <span class="help-block with-errors"></span>
                         </div>
 
-                        <div class="col-lg-6" style="padding-left: 5rem">
+                        <div class="col-lg-6" style="padding-left: 1.5rem">
                             <label for="nilai_pkb" class="control-label">Nilai PKB</label>
                             <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required >
                                 <span class="help-block with-errors"></span>
@@ -80,12 +90,12 @@
                     </div>
 
                     <div class="row">
-                       <div class="col-lg-6" style="padding-left: 5rem">
+                       <div class="col-lg-6" style="padding-left: 2.5rem">
                         <label for="swdkllj" class="control-label">SWDKLLJ</label>
                         <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
                         <span class="help-block with-errors"></span>
                        </div>
-                       <div class="col-lg-6" style="padding-left: 5rem">
+                       <div class="col-lg-6" style="padding-left: 1.5rem">
                         <label for="id_jenis_kendaraan" class="control-label">Jenis Kendaraan</label>
                         <select name="id_jenis_kendaraan" id="id_jenis_kendaraan" class="form-control" required onchange="setAdminValue()">
                             <option value="">Pilih Jenis Kendaraan</option>
@@ -93,18 +103,6 @@
                             <option value="{{ $key }}">{{ $item }}</option>
                             @endforeach
                             </select>
-                        <span class="help-block with-errors"></span>
-                       </div>
-                    </div>
-                    <div class="row">
-                       <div class="col-lg-6 me-4" style="padding-left: 5rem">
-                        <label for="id_pelanggan" class="control-label">Pelanggan</label>
-                        <select name="id_pelanggan" id="id_pelanggan" class="form-control" required onchange="setPelangganAdm()">
-                            <option value="">Pilih Pelanggan</option>
-                            @foreach ($pelanggan as $key => $item)
-                            <option value="{{ $key }}">{{ $item }}</option>
-                            @endforeach
-                        </select>
                         <span class="help-block with-errors"></span>
                        </div>
                     </div>
@@ -260,7 +258,7 @@ function addNewRow() {
                     if (swdklljElement) {
                         swdkllj = parseInt(swdklljElement.value.replaceAll(',', '')) || 0;
                     } else {
-                        console.error("Elemen 'swdkllj' tidak ditemukan");
+                        console.error("Data 'swdkllj' tidak ditemukan");
                     }
 
                     let jenisKendaraanDropdown = document.getElementById('id_jenis_kendaraan');
@@ -344,7 +342,7 @@ function addNewRow() {
             console.error("Nilai 'masa_berlaku_stnk' kosong");
         }
     } else {
-        console.error("Elemen 'masa_berlaku_stnk' tidak ditemukan");
+        console.error("Data 'masa_berlaku_stnk' tidak ditemukan");
     }
 }
 

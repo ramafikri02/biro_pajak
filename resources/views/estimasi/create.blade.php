@@ -34,115 +34,92 @@
                         </div>
                     </div> -->
 
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="id_tipe_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Id Upping</label>
-                            <div class="col-md-2">
-                                    <select name="id_upping" id="id_upping" class="form-control" required onchange="setBiayaUpp()">
-                                        <option value="">Pilih Biaya Upping</option>
-                                        @foreach ($biaya_uppings as $key => $item)
-                                        <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="help-block with-errors"></span>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="no_plat" class="control-label">Nomor Plat</label>
+                            <div>
+                                <input type="text" name="no_plat" id="no_plat" class="form-control" required autofocus>
+                                <span class="help-block with-errors"></span>
+                            </div>
+                        </div>
+                        
+                       <div class="col-lg-6 me-4" style="padding-left: 2rem">
+                        <label for="id_pelanggan" class="control-label">Pelanggan</label>
+                        <select name="id_pelanggan" id="id_pelanggan" class="form-control" required onchange="setPelangganAdm()">
+                            <option value="">Pilih Pelanggan</option>
+                            @foreach ($pelanggan as $key => $item)
+                            <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                        <span class="help-block with-errors"></span>
+                       </div>
+                        <div class="col-lg-6 hidden">
+                            <label for="no_plat" class="control-label">Id Upping</label>
+                                <select name="id_upping" id="id_upping" class="form-control" required
+                                onchange="setBiayaUpp()">
+                                @foreach ($biaya_uppings as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <label for="id_tipe_pengurusan" class="control-label">Jenis
+                                Pengurusan</label>
+                            <select name="id_tipe_pengurusan" id="id_tipe_pengurusan" class="form-control" required
+                                onchange="setBiayaProsesValue()">
+                                <option value="">Pilih Tipe Pengurusan</option>
+                                @foreach ($tipe_pengurusan as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="nama_wilayah" class="control-label">Wilayah</label>
+                            <select name="id_wilayah" id="id_wilayah" class="form-control" required>
+                                <option value="">Pilih Wilayah</option>
+                                @foreach ($wilayah as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                            <span class="help-block with-errors"></span>
                             </div>
                         </div>
                     </div>
-
-                    <div class="form-row">
-                        <div class="col">
-                            <label for="no_plat" class="col-lg-2 col-lg-offset-1 control-label">Nomor Plat</label>
-                            <!-- <div class="col-md-2">
-                                <select name="id_kendaraan" id="id_kendaraan" class="form-control" required>
-                                    <option value="">Pilih Kendaraan</option>
-                                    @foreach ($kendaraan as $key => $item)
-                                    <option value="{{ $key }}">{{ $item }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="help-block with-errors"></span>
-                            </div> -->
-                            <div class="col-md-2">
-                                <input type="text" name="no_plat" id="no_plat" class="form-control checked" required autocomplete="no_plat" data-name="no_plat">
-                                <span class="help-block with-errors"></span>
-                            </div>
-                            <!-- <label for="swdkllj" class="col-lg-2 col-lg-offset-1 control-label">SWDKLLJ</label>
-                            <div class="col-md-2">
-                                <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
-                                <span class="help-block with-errors"></span>
-                            </div> -->
-                            <label for="id_tipe_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Jenis Pengurusan</label>
-                            <div class="col-md-2">
-                                    <select name="id_tipe_pengurusan" id="id_tipe_pengurusan" class="form-control" required onchange="setBiayaProsesValue()">
-                                        <option value="">Pilih Tipe Pengurusan</option>
-                                        @foreach ($tipe_pengurusan as $key => $item)
-                                        <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="help-block with-errors"></span>
-                                </div>
-                            <label for="nilai_pkb" class="col-lg-2 col-lg-offset-1  control-label">Nilai PKB</label>
-                            <div class="col-md-2">
-                                <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required >
-                                <span class="help-block with-errors"></span>
-                            </div>
-                            <label for="masa_berlaku_stnk" class="col-lg-2 col-lg-offset-1 control-label">Masa berlaku Pajak di STNK</label>
-                            <div class="col-md-2">
+                    <div class="row">
+                        <div class="col-lg-6" style="padding-left: 2.5rem">
+                            <label for="masa_berlaku_stnk" class="control-label">Masa berlaku
+                                Pajak di STNK</label>
                                 <input type="text" name="masa_berlaku_stnk" id="masa_berlaku_stnk" class="form-control datepicker" required autofocus autocomplete="off"
-                                    style="border-radius: 0 !important;" >
+                                style="border-radius: 0 !important;" >
+                            <span class="help-block with-errors"></span>
+                        </div>
+
+                        <div class="col-lg-6" style="padding-left: 1.5rem">
+                            <label for="nilai_pkb" class="control-label">Nilai PKB</label>
+                            <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required >
                                 <span class="help-block with-errors"></span>
-                            </div>
                         </div>
                     </div>
 
-                    <div class="form-row">
-                        <div class="col">
-                        <label for="swdkllj" class="col-lg-2 col-lg-offset-1 control-label">SWDKLLJ</label>
-                            <div class="col-md-2">
-                                <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
-                                <span class="help-block with-errors"></span>
-                            </div>
-                            <!-- <label for="id_tipe_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Tipe Pengurusan</label>
-                            <div class="col-md-2">
-                                    <select name="id_tipe_pengurusan" id="id_tipe_pengurusan" class="form-control" required>
-                                        <option value="">Pilih Tipe Pengurusan</option>
-                                        @foreach ($tipe_pengurusan as $key => $item)
-                                        <option value="{{ $key }}">{{ $item }}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="help-block with-errors"></span>
-                                </div> -->
-                            <label for="id_wilayah" class="col-lg-2 col-lg-offset-1 control-label">Wilayah</label>
-                            <div class="col-md-2">
-                                <select name="id_wilayah" id="id_wilayah" class="form-control" required>
-                                    <option value="">Pilih Wilayah</option>
-                                    @foreach ($wilayah as $key => $item)
-                                    <option value="{{ $key }}">{{ $item }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="help-block with-errors"></span>
-                            </div>
-                            <label for="id_jenis_kendaraan" class="col-lg-2 col-lg-offset-1 control-label">Jenis Kendaraan</label>
-                            <div class="col-md-2">
-                                <select name="id_jenis_kendaraan" id="id_jenis_kendaraan" class="form-control" required onchange="setAdminValue()">
-                                    <option value="">Pilih Jenis Kendaraan</option>
-                                    @foreach ($jenis_kendaraan as $key => $item)
-                                    <option value="{{ $key }}">{{ $item }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="help-block with-errors"></span>
-                            </div>
-                            <label for="id_pelanggan" class="col-lg-2 col-lg-offset-1 control-label">Pelanggan</label>
-                            <div class="col-md-2">
-                                <select name="id_pelanggan" id="id_pelanggan" class="form-control" required onchange="setPelangganAdm()">
-                                    <option value="">Pilih Pelanggan</option>
-                                    @foreach ($pelanggan as $key => $item)
-                                    <option value="{{ $key }}">{{ $item }}</option>
-                                    @endforeach
-                                </select>
-                                <span class="help-block with-errors"></span>
-                            </div>
-                            </div>
-                        </div>
+                    <div class="row">
+                       <div class="col-lg-6" style="padding-left: 2.5rem">
+                        <label for="swdkllj" class="control-label">SWDKLLJ</label>
+                        <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required >
+                        <span class="help-block with-errors"></span>
+                       </div>
+                       <div class="col-lg-6" style="padding-left: 1.5rem">
+                        <label for="id_jenis_kendaraan" class="control-label">Jenis Kendaraan</label>
+                        <select name="id_jenis_kendaraan" id="id_jenis_kendaraan" class="form-control" required onchange="setAdminValue()">
+                            <option value="">Pilih Jenis Kendaraan</option>
+                            @foreach ($jenis_kendaraan as $key => $item)
+                            <option value="{{ $key }}">{{ $item }}</option>
+                            @endforeach
+                            </select>
+                        <span class="help-block with-errors"></span>
+                       </div>
                     </div>
                     <div class="box-footer text-right">
                         <button type="button" class="btn btn-sm btn-flat btn-success" id="addRow"><i class="fa fa-percent"></i> Hitung</button>
