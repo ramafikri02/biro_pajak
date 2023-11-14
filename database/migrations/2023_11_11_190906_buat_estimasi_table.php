@@ -24,6 +24,7 @@ class BuatEstimasiTable extends Migration
             $table->unsignedInteger('id_wilayah');
             $table->unsignedInteger('id_jenis_kendaraan');
             $table->unsignedInteger('id_pelanggan');
+            $table->unsignedInteger('id_upping');
             $table->integer('admin_stnk')->default(0);
             $table->integer('admin_tnkb')->default(0);
             $table->integer('biaya_proses')->default(0);

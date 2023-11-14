@@ -19,9 +19,9 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="biaya" class="col-lg-2 col-lg-offset-1 control-label">Biaya</label>
+                        <label for="biaya_presentasi" class="col-lg-2 col-lg-offset-1 control-label">Biaya %</label>
                         <div class="col-lg-6">
-                            <input type="text" name="biaya" id="biaya" class="form-control digits" required>
+                            <input type="text" name="biaya_presentasi" id="biaya_presentasi" class="form-control digits" required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>

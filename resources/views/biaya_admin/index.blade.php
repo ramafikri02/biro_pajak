@@ -21,7 +21,7 @@
                     <thead>
                         <th width="5%">No</th>
                         <th>Nama Admin</th>
-                        <th>Biaya</th>
+                        <th>Biaya %</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -49,7 +49,7 @@
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'nama_admin'},
-                {data: 'biaya'},
+                {data: 'biaya_presentasi'},
                 {data: 'aksi', searchable: false, sortable: false},
             ],
             columnDefs: [
@@ -77,7 +77,7 @@
 
     function addForm(url) {
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Tambah Wilayah');
+        $('#modal-form .modal-title').text('Tambah Biaya Admin');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
