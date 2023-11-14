@@ -3,7 +3,9 @@
 use App\Http\Controllers\{
     DashboardController,
     WilayahController,
+    BiayaAdminController,
     PelangganController,
+    JenisKendaraanController,
     KendaraanController,
     TipePengurusanController,
     EstimasiController,
@@ -48,8 +50,14 @@ Route::group(['middleware' => 'auth'], function () {
         // Route::put('/wilayah/update', [WilayahController::class, 'update'])->name('wilayah.update');
         Route::resource('/wilayah', WilayahController::class);
 
+        Route::get('/biaya_admin/data', [BiayaAdminController::class, 'data'])->name('biaya_admin.data');
+        Route::resource('/biaya_admin', BiayaAdminController::class);
+        
         Route::get('/pelanggan/data', [PelangganController::class, 'data'])->name('pelanggan.data');
         Route::resource('/pelanggan', PelangganController::class);
+
+        Route::get('/jenis_kendaraan/data', [JenisKendaraanController::class, 'data'])->name('jenis_kendaraan.data');
+        Route::resource('/jenis_kendaraan', JenisKendaraanController::class);
 
         Route::get('/kendaraan/data', [KendaraanController::class, 'data'])->name('kendaraan.data');
         Route::resource('/kendaraan', KendaraanController::class);
@@ -57,12 +65,12 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/tipe_pengurusan/data', [TipePengurusanController::class, 'data'])->name('tipe_pengurusan.data');
         Route::resource('/tipe_pengurusan', TipePengurusanController::class);
 
-        Route::get('/estimasi/data', [EstimasiController::class, 'data'])->name('estimasi.data');
-        Route::get('/estimasi/create', [EstimasiController::class, 'create'])->name('estimasi.create');
-        Route::post('/estimasi/save', [EstimasiController::class, 'store'])->name('estimasi.save');
-        Route::get('/estimasi/edit', [EstimasiController::class, 'edit'])->name('estimasi.edit');
-        Route::put('/estimasi/update', [EstimasiController::class, 'update'])->name('estimasi.update');
-        Route::resource('/estimasi', EstimasiController::class);
+        // Route::get('/estimasi/data', [EstimasiController::class, 'data'])->name('estimasi.data');
+        // Route::get('/estimasi/create', [EstimasiController::class, 'create'])->name('estimasi.create');
+        // Route::post('/estimasi/save', [EstimasiController::class, 'store'])->name('estimasi.save');
+        // Route::get('/estimasi/edit', [EstimasiController::class, 'edit'])->name('estimasi.edit');
+        // Route::put('/estimasi/update', [EstimasiController::class, 'update'])->name('estimasi.update');
+        // Route::resource('/estimasi', EstimasiController::class);
 
         Route::get('/kategori/data', [KategoriController::class, 'data'])->name('kategori.data');
         Route::resource('/kategori', KategoriController::class);
@@ -109,6 +117,14 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/transaksi/loadform/{diskon}/{total}/{diterima}', [PenjualanDetailController::class, 'loadForm'])->name('transaksi.load_form');
         Route::resource('/transaksi', PenjualanDetailController::class)
             ->except('create', 'show', 'edit');
+
+        Route::get('/estimasi/data', [EstimasiController::class, 'data'])->name('estimasi.data');
+        Route::get('/estimasi/create', [EstimasiController::class, 'create'])->name('estimasi.create');
+        Route::post('/estimasi/save', [EstimasiController::class, 'store'])->name('estimasi.save');
+        Route::get('/estimasi/edit', [EstimasiController::class, 'edit'])->name('estimasi.edit');
+        Route::put('/estimasi/update', [EstimasiController::class, 'update'])->name('estimasi.update');
+        Route::get('/check-nomor-plat/{nomor_plat}', [EstimasiController::class, 'checkNomorPlat']);
+        Route::resource('/estimasi', EstimasiController::class);
     });
 
     Route::group(['middleware' => 'level:1'], function () {

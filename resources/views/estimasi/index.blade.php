@@ -19,10 +19,9 @@
                 </a>
             </div>
             <div class="box-body table-responsive">
-                <table class="table table-stiped table-bordered">
+                <table class="tableOne table-stiped table-bordered">
                     <thead>
                         <th width="5%">No</th>
-                        <th>ID Kendaraan</th>
                         <th>ID Pelanggan</th>
                         <th>ID Wilayah</th>
                         <th>Tanggal DIbuat</th>
@@ -38,11 +37,18 @@
 @endsection
 
 @push('scripts')
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.7.0/validator.min.js"
+    integrity="sha512-rJU+PnS2bHzDCvRGFhXouCSxf4YYaUyUfjXMHsHFfMKhWDIEBr8go2LZ2EYXOqASey1tWc2qToeOCYh9et2aGQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+    integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-    let table;
+    let tableOne;
 
     $(function () {
-        table = $('.table').DataTable({
+        tableOne = $('.tableOne').DataTable({
             responsive: true,
             processing: true,
             serverSide: true,
@@ -52,10 +58,16 @@
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
-                {data: 'id_kendaraan'},
                 {data: 'id_pelanggan'},
                 {data: 'id_wilayah'},
-                {data: 'created_at'},
+                {
+                data: 'created_at',
+                render: function (data) {
+                    const date = new Date(data);
+                    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                    return date.toLocaleDateString('id-ID', options);
+                    }
+                },
                 {data: 'aksi', searchable: false, sortable: false},
             ]
         });
@@ -87,7 +99,7 @@
 
     function editForm(url) {
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Edit Wilayah');
+        $('#modal-form .modal-title').text('Edit Estimasi');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);

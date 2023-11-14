@@ -14,11 +14,11 @@ class TambahForeignKeyToEstimasiTable extends Migration
     public function up()
     {
         Schema::table('estimasi', function (Blueprint $table) {
-            $table->foreign('id_kendaraan')
-                  ->references('id_kendaraan')
-                  ->on('kendaraan')
-                  ->onUpdate('restrict')
-                  ->onDelete('restrict');
+            // $table->foreign('id_kendaraan')
+            //       ->references('id_kendaraan')
+            //       ->on('kendaraan')
+            //       ->onUpdate('restrict')
+            //       ->onDelete('restrict');
             $table->foreign('id_tipe_pengurusan')
                   ->references('id_tipe_pengurusan')
                   ->on('tipe_pengurusan')
@@ -45,7 +45,7 @@ class TambahForeignKeyToEstimasiTable extends Migration
     public function down()
     {
         Schema::table('estimasi', function (Blueprint $table) {
-            $table->dropForeign('estimasi_id_kendaraan_foreign');
+            // $table->dropForeign('estimasi_id_kendaraan_foreign');
             $table->dropForeign('estimasi_id_tipe_pengurusan_foreign');
             $table->dropForeign('estimasi_id_wilayah_foreign');
             $table->dropForeign('estimasi_id_pelanggan_foreign');

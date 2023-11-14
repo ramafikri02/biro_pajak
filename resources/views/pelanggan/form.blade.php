@@ -19,9 +19,14 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="admin" class="col-lg-2 col-lg-offset-1 control-label">Admin</label>
+                        <label for="id_biaya_admin" class="col-lg-2 col-lg-offset-1 control-label">Admin</label>
                         <div class="col-lg-6">
-                            <input type="text" name="admin" id="admin" class="form-control" required autofocus>
+                            <select name="id_biaya_admin" id="id_biaya_admin" class="form-control" required>
+                                <option value="">Pilih Admin</option>
+                                @foreach ($biaya_admin as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>

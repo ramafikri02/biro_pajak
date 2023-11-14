@@ -12,16 +12,16 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="nama_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Nama Pengurusan</label>
+                        <label for="nama_admin" class="col-lg-2 col-lg-offset-1 control-label">Nama Admin</label>
                         <div class="col-lg-6">
-                            <input type="text" name="nama_pengurusan" id="nama_pengurusan" class="form-control" required autofocus>
+                            <input type="text" name="nama_admin" id="nama_admin" class="form-control" required autofocus>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="biaya_proses" class="col-lg-2 col-lg-offset-1 control-label">Biaya Proses</label>
+                        <label for="biaya_presentasi" class="col-lg-2 col-lg-offset-1 control-label">Biaya %</label>
                         <div class="col-lg-6">
-                            <input type="text" name="biaya_proses" id="biaya_proses" class="form-control digits" required>
+                            <input type="text" name="biaya_presentasi" id="biaya_presentasi" class="form-control digits" required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
     var cleaveCustom = new Cleave(ele, {
         numeral: true,
         numeralThousandsGroupStyle: 'thousand'
-        });
     });
+});
 </script>
 @endpush

@@ -8,7 +8,11 @@ use App\Models\Kendaraan;
 use App\Models\Pelanggan;
 use App\Models\TipePengurusan;
 use App\Models\Wilayah;
+use App\Models\BiayaAdmin;
+use App\Models\JenisKendaraan;
+use App\Models\upping;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 
 class EstimasiController extends Controller
 {
@@ -19,7 +23,19 @@ class EstimasiController extends Controller
      */
     public function index()
     {
-        return view('estimasi.index');
+        $tipe_pengurusan = TipePengurusan::all()->pluck('nama_pengurusan', 'id_tipe_pengurusan');
+        $wilayah = Wilayah::all()->pluck('nama_wilayah', 'id_wilayah');
+        $kendaraan = Kendaraan::all()->pluck('no_plat', 'id_kendaraan');
+        $pelanggan = Pelanggan::all()->pluck('nama_pelanggan', 'id_pelanggan');
+        $jenis_kendaraan = JenisKendaraan::all()->pluck('jenis', 'id_jenis_kendaraan');
+        $adminTnkbData = JenisKendaraan::pluck('admin_tnkb', 'id_jenis_kendaraan')->toArray();
+        $adminStnkData = JenisKendaraan::pluck('admin_stnk', 'id_jenis_kendaraan')->toArray();
+        $biayaProsesData = TipePengurusan::pluck('biaya_proses', 'id_tipe_pengurusan')->toArray();
+        $biayaAdminData = BiayaAdmin::pluck('biaya_presentasi', 'id_biaya_admin')->toArray();
+        $biaya_admin = BiayaAdmin::all()->pluck('nama_admin', 'id_biaya_admin');
+        $biaya_uppings = upping::all()->pluck('biaya', 'id_upping');
+        $estimasi = Estimasi::with('tipe_pengurusan', 'wilayah', 'kendaraan', 'pelanggan', 'jenis_kendaraan', 'adminTnkbData', 'adminStnkData', 'biayaProsesData','biayaAdminData', 'biaya_admin', 'biaya_uppings');
+        return view('estimasi.index', compact('tipe_pengurusan', 'wilayah', 'kendaraan', 'pelanggan','jenis_kendaraan', 'adminTnkbData', 'adminStnkData', 'biayaProsesData', 'biayaAdminData', 'biaya_admin', 'biaya_uppings', 'estimasi'));
     }
 
     public function data()
@@ -52,8 +68,15 @@ class EstimasiController extends Controller
         $wilayah = Wilayah::all()->pluck('nama_wilayah', 'id_wilayah');
         $kendaraan = Kendaraan::all()->pluck('no_plat', 'id_kendaraan');
         $pelanggan = Pelanggan::all()->pluck('nama_pelanggan', 'id_pelanggan');
+        $jenis_kendaraan = JenisKendaraan::all()->pluck('jenis', 'id_jenis_kendaraan');
+        $adminTnkbData = JenisKendaraan::pluck('admin_tnkb', 'id_jenis_kendaraan')->toArray();
+        $adminStnkData = JenisKendaraan::pluck('admin_stnk', 'id_jenis_kendaraan')->toArray();
+        $biayaProsesData = TipePengurusan::pluck('biaya_proses', 'id_tipe_pengurusan')->toArray();
+        $biayaAdminData = BiayaAdmin::pluck('biaya_presentasi', 'id_biaya_admin')->toArray();
+        $biaya_admin = BiayaAdmin::all()->pluck('nama_admin', 'id_biaya_admin');
+        $biaya_uppings = upping::all()->pluck('biaya', 'id_upping');
 
-        return view('estimasi.create', compact('tipe_pengurusan', 'wilayah', 'kendaraan', 'pelanggan'));
+        return view('estimasi.create', compact('tipe_pengurusan', 'wilayah', 'kendaraan', 'jenis_kendaraan', 'biaya_admin', 'pelanggan', 'adminTnkbData', 'adminStnkData', 'biayaProsesData', 'biayaAdminData', 'biaya_uppings'));
     }
 
     /**
@@ -66,20 +89,21 @@ class EstimasiController extends Controller
     {
         $estimasi = new Estimasi();
         // $estimasi->no_plat = $request->no_plat;
-        $estimasi->id_kendaraan = $request->id_kendaraan;
-        $estimasi->nilai_pkb = $request->nilai_pkb;
-        $estimasi->swdkllj = $request->swdkllj;
+        $estimasi->no_plat = $request->no_plat;
+        $estimasi->nilai_pkb = Str::replace(',', '', $request->nilai_pkb);
+        $estimasi->swdkllj = Str::replace(',', '', $request->swdkllj);
         $estimasi->masa_berlaku_stnk = $request->masa_berlaku_stnk;
         $estimasi->id_tipe_pengurusan = $request->id_tipe_pengurusan;
         $estimasi->id_wilayah = $request->id_wilayah;
-        $estimasi->jenis_kendaraan = $request->jenis_kendaraan;
+        $estimasi->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $estimasi->id_pelanggan = $request->id_pelanggan;
-        $estimasi->admin_stnk = $request->admin_stnk;
-        $estimasi->admin_tnkb = $request->admin_tnkb;
-        $estimasi->biaya_proses = $request->biaya_proses;
-        $estimasi->biaya_admin_pelanggan = $request->biaya_admin_pelanggan;
-        $estimasi->upping = $request->upping;
-        $estimasi->biaya_estimasi = $request->biaya_estimasi;
+        $estimasi->id_upping = $request->id_upping;
+        $estimasi->admin_stnk = Str::replace(',', '', $request->admin_stnk);
+        $estimasi->admin_tnkb = Str::replace(',', '', $request->admin_tnkb);
+        $estimasi->biaya_proses = Str::replace(',', '', $request->biaya_proses);
+        $estimasi->biaya_admin_pelanggan = Str::replace(',', '', $request->biaya_admin_pelanggan);
+        $estimasi->upping = Str::replace(',', '', $request->upping);
+        $estimasi->biaya_estimasi = Str::replace(',', '', $request->biaya_estimasi);
         $estimasi->save();
 
         return Redirect::to('/estimasi');
@@ -107,7 +131,19 @@ class EstimasiController extends Controller
     public function edit($id)
     {
         $estimasi = Estimasi::find($id);
-        return view('estimasi.create', compact('estimasi'));
+        $tipe_pengurusan = TipePengurusan::all()->pluck('nama_pengurusan', 'id_tipe_pengurusan');
+        $wilayah = Wilayah::all()->pluck('nama_wilayah', 'id_wilayah');
+        $kendaraan = Kendaraan::all()->pluck('no_plat', 'id_kendaraan');
+        $pelanggan = Pelanggan::all()->pluck('nama_pelanggan', 'id_pelanggan');
+        $jenis_kendaraan = JenisKendaraan::all()->pluck('jenis', 'id_jenis_kendaraan');
+        $adminTnkbData = JenisKendaraan::pluck('admin_tnkb', 'id_jenis_kendaraan')->toArray();
+        $adminStnkData = JenisKendaraan::pluck('admin_stnk', 'id_jenis_kendaraan')->toArray();
+        $biayaProsesData = TipePengurusan::pluck('biaya_proses', 'id_tipe_pengurusan')->toArray();
+        $biayaAdminData = BiayaAdmin::pluck('biaya_presentasi', 'id_biaya_admin')->toArray();
+        $biaya_admin = BiayaAdmin::all()->pluck('nama_admin', 'id_biaya_admin');
+        $biaya_uppings = upping::all()->pluck('biaya', 'id_upping');
+
+        return view('estimasi.index', compact('estimasi', 'tipe_pengurusan', 'wilayah', 'kendaraan', 'jenis_kendaraan', 'biaya_admin', 'pelanggan', 'adminTnkbData', 'adminStnkData', 'biayaProsesData', 'biayaAdminData', 'biaya_uppings'));
     }
 
     /**
@@ -121,20 +157,21 @@ class EstimasiController extends Controller
     {
         $estimasi = Estimasi::find($id);
         // $estimasi->no_plat = $request->no_plat;
-        $estimasi->id_kendaraan = $request->id_kendaraan;
-        $estimasi->nilai_pkb = $request->nilai_pkb;
-        $estimasi->swdkllj = $request->swdkllj;
+        $estimasi->no_plat = $request->no_plat;
+        $estimasi->nilai_pkb = Str::replace(',', '', $request->nilai_pkb);
+        $estimasi->swdkllj = Str::replace(',', '', $request->swdkllj);
         $estimasi->masa_berlaku_stnk = $request->masa_berlaku_stnk;
         $estimasi->id_tipe_pengurusan = $request->id_tipe_pengurusan;
         $estimasi->id_wilayah = $request->id_wilayah;
-        $estimasi->jenis_kendaraan = $request->jenis_kendaraan;
+        $estimasi->id_jenis_kendaraan = $request->id_jenis_kendaraan;
         $estimasi->id_pelanggan = $request->id_pelanggan;
-        $estimasi->admin_stnk = $request->admin_stnk;
-        $estimasi->admin_tnkb = $request->admin_tnkb;
-        $estimasi->biaya_proses = $request->biaya_proses;
-        $estimasi->biaya_admin_pelanggan = $request->biaya_admin_pelanggan;
-        $estimasi->upping = $request->upping;
-        $estimasi->biaya_estimasi = $request->biaya_estimasi;
+        $estimasi->id_upping = $request->id_upping;
+        $estimasi->admin_stnk = Str::replace(',', '', $request->admin_stnk);
+        $estimasi->admin_tnkb = Str::replace(',', '', $request->admin_tnkb);
+        $estimasi->biaya_proses = Str::replace(',', '', $request->biaya_proses);
+        $estimasi->biaya_admin_pelanggan = Str::replace(',', '', $request->biaya_admin_pelanggan);
+        $estimasi->upping = Str::replace(',', '', $request->upping);
+        $estimasi->biaya_estimasi = Str::replace(',', '', $request->biaya_estimasi);
         $estimasi->update();
 
         return response()->json('Data berhasil disimpan', 200);
@@ -152,5 +189,12 @@ class EstimasiController extends Controller
         $estimasi->delete();
 
         return response(null, 204);
+    }
+     
+    public function checkNomorPlat(Request $request, $nomor_plat)
+    {
+        $nomorPlatExists = Estimasi::where('no_plat', $nomor_plat)->exists();
+
+        return response()->json(['nomorPlatExists' => $nomorPlatExists]);
     }
 }

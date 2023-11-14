@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BiayaAdmin;
+use Illuminate\Support\Str;
 
 class BiayaAdminController extends Controller
 {
@@ -56,7 +57,7 @@ class BiayaAdminController extends Controller
     {
         $biaya_admin = new BiayaAdmin();
         $biaya_admin->nama_admin = $request->nama_admin;
-        $biaya_admin->biaya = $request->biaya;
+        $biaya_admin->biaya_presentasi = Str::replace(',', '', $request->biaya_presentasi);
         $biaya_admin->save();
 
         return response()->json('Data berhasil disimpan', 200);
@@ -97,7 +98,7 @@ class BiayaAdminController extends Controller
     {
         $biaya_admin = BiayaAdmin::find($id);
         $biaya_admin->nama_admin = $request->nama_admin;
-        $biaya_admin->biaya = $request->biaya;
+        $biaya_admin->biaya_presentasi = Str::replace(',', '', $request->biaya_presentasi);
         $biaya_admin->update();
 
         return response()->json('Data berhasil disimpan', 200);

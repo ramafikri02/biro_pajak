@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
 @section('title')
-    Daftar Jenis Pengurusan
+    Daftar Biaya Admin
 @endsection
 
 @section('breadcrumb')
     @parent
-    <li class="active">Daftar Jenis Pengurusan</li>
+    <li class="active">Daftar Biaya Admin</li>
 @endsection
 
 @section('content')
@@ -14,14 +14,14 @@
     <div class="col-lg-12">
         <div class="box">
             <div class="box-header with-border">
-                <button onclick="addForm('{{ route('tipe_pengurusan.store') }}')" class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
+                <button onclick="addForm('{{ route('biaya_admin.store') }}')" class="btn btn-success btn-xs btn-flat"><i class="fa fa-plus-circle"></i> Tambah</button>
             </div>
             <div class="box-body table-responsive">
                 <table class="table table-stiped table-bordered">
                     <thead>
                         <th width="5%">No</th>
-                        <th>Nama Jenis Pengurusan</th>
-                        <th>Biaya</th>
+                        <th>Nama Admin</th>
+                        <th>Biaya %</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -30,7 +30,7 @@
     </div>
 </div>
 
-@includeIf('tipe_pengurusan.form')
+@includeIf('biaya_admin.form')
 @endsection
 
 @push('scripts')
@@ -44,12 +44,12 @@
             serverSide: true,
             autoWidth: false,
             ajax: {
-                url: '{{ route('tipe_pengurusan.data') }}',
+                url: '{{ route('biaya_admin.data') }}',
             },
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
-                {data: 'nama_pengurusan'},
-                {data: 'biaya_proses'},
+                {data: 'nama_admin'},
+                {data: 'biaya_presentasi'},
                 {data: 'aksi', searchable: false, sortable: false},
             ],
             columnDefs: [
@@ -77,26 +77,26 @@
 
     function addForm(url) {
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Tambah Pelanggan');
+        $('#modal-form .modal-title').text('Tambah Biaya Admin');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('post');
-        $('#modal-form [name=nama_pengurusan]').focus();
+        $('#modal-form [name=nama_admin]').focus();
     }
 
     function editForm(url) {
         $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Edit Pelanggan');
+        $('#modal-form .modal-title').text('Edit Wilayah');
 
         $('#modal-form form')[0].reset();
         $('#modal-form form').attr('action', url);
         $('#modal-form [name=_method]').val('put');
-        $('#modal-form [name=nama_pengurusan]').focus();
+        $('#modal-form [name=nama_admin]').focus();
 
         $.get(url)
             .done((response) => {
-                $('#modal-form [name=nama_pengurusan]').val(response.nama_pengurusan);
+                $('#modal-form [name=nama_admin]').val(response.nama_admin);
             })
             .fail((errors) => {
                 alert('Tidak dapat menampilkan data');

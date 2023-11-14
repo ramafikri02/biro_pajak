@@ -19,6 +19,18 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label for="id_jenis_kendaraan" class="col-lg-2 col-lg-offset-1 control-label">Jenis Kendaraan</label>
+                        <div class="col-lg-6">
+                            <select name="id_jenis_kendaraan" id="id_jenis_kendaraan" class="form-control" required>
+                                <option value="">Pilih Jenis Kendaraan</option>
+                                @foreach ($jenis_kendaraan as $key => $item)
+                                <option value="{{ $key }}">{{ $item }}</option>
+                                @endforeach
+                            </select>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label for="id_pelanggan" class="col-lg-2 col-lg-offset-1 control-label">Pelanggan</label>
                         <div class="col-lg-6">
                             <select name="id_pelanggan" id="id_pelanggan" class="form-control" required>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JenisKendaraan;
+use Illuminate\Support\Str;
 
 class JenisKendaraanController extends Controller
 {
@@ -56,8 +57,8 @@ class JenisKendaraanController extends Controller
     {
         $jenis_kendaraan = new JenisKendaraan();
         $jenis_kendaraan->jenis = $request->jenis;
-        $jenis_kendaraan->admin_stnk = $request->admin_stnk;
-        $jenis_kendaraan->admin_tnkb = $request->admin_tnkb;
+        $jenis_kendaraan->admin_stnk = Str::replace(',', '', $request->admin_stnk);
+        $jenis_kendaraan->admin_tnkb = Str::replace(',', '', $request->admin_tnkb);
         $jenis_kendaraan->save();
 
         return response()->json('Data berhasil disimpan', 200);
@@ -98,8 +99,8 @@ class JenisKendaraanController extends Controller
     {
         $jenis_kendaraan = JenisKendaraan::find($id);
         $jenis_kendaraan->jenis = $request->jenis;
-        $jenis_kendaraan->admin_stnk = $request->admin_stnk;
-        $jenis_kendaraan->admin_tnkb = $request->admin_tnkb;
+        $jenis_kendaraan->admin_stnk = Str::replace(',', '', $request->admin_stnk);
+        $jenis_kendaraan->admin_tnkb = Str::replace(',', '', $request->admin_tnkb);
         $jenis_kendaraan->update();
 
         return response()->json('Data berhasil disimpan', 200);

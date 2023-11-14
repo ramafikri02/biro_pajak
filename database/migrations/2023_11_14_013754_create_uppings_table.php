@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class BuatBiayaAdmin extends Migration
+class CreateUppingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class BuatBiayaAdmin extends Migration
      */
     public function up()
     {
-        Schema::create('biaya_admin', function (Blueprint $table) {
-            $table->increments('id_biaya_admin');
-            $table->string('nama_admin');
-            $table->integer('biaya_presentasi')->default(0);
-            $table->string('createdBy')->nullable();
+        Schema::create('uppings', function (Blueprint $table) {
+            $table->increments('id_upping');
+            $table->string('biaya');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class BuatBiayaAdmin extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('biaya_admin');
+        Schema::dropIfExists('uppings');
     }
 }

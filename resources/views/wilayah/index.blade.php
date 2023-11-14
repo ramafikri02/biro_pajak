@@ -21,7 +21,6 @@
                     <thead>
                         <th width="5%">No</th>
                         <th>Wilayah</th>
-                        <th>Tanggal DIbuat</th>
                         <th width="15%"><i class="fa fa-cog"></i></th>
                     </thead>
                 </table>
@@ -49,7 +48,6 @@
             columns: [
                 {data: 'DT_RowIndex', searchable: false, sortable: false},
                 {data: 'nama_wilayah'},
-                {data: 'created_at'},
                 {data: 'aksi', searchable: false, sortable: false},
             ]
         });

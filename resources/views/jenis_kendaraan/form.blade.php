@@ -12,16 +12,23 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label for="nama_pengurusan" class="col-lg-2 col-lg-offset-1 control-label">Nama Pengurusan</label>
+                        <label for="jenis" class="col-lg-2 col-lg-offset-1 control-label">Jenis Kendaraan</label>
                         <div class="col-lg-6">
-                            <input type="text" name="nama_pengurusan" id="nama_pengurusan" class="form-control" required autofocus>
+                            <input type="text" name="jenis" id="jenis" class="form-control" required autofocus>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="biaya_proses" class="col-lg-2 col-lg-offset-1 control-label">Biaya Proses</label>
+                        <label for="admin_stnk" class="col-lg-2 col-lg-offset-1 control-label">Admin STNK</label>
                         <div class="col-lg-6">
-                            <input type="text" name="biaya_proses" id="biaya_proses" class="form-control digits" required>
+                            <input type="text" name="admin_stnk" id="admin_stnk" class="form-control digits" required>
+                            <span class="help-block with-errors"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="admin_tnkb" class="col-lg-2 col-lg-offset-1 control-label">Admin TNKB</label>
+                        <div class="col-lg-6">
+                            <input type="text" name="admin_tnkb" id="admin_tnkb" class="form-control digits" required>
                             <span class="help-block with-errors"></span>
                         </div>
                     </div>
