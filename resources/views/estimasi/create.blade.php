@@ -181,8 +181,8 @@
             console.error('Terjadi kesalahan: ', error);
         });
     });
-    
-    function showSweetAlert() {
+
+    function showSweetAlert(id_estimasi) {
         swal({
             title: "Nomor Plat Sudah Ada",
             text: "Berkas ini sudah pernah di estimasi. Ingin melanjutkan?",
@@ -194,9 +194,7 @@
         }).then((value) => {
             if (value) {
                 $(document).ready(function() {
-                window.location.href = 'http://127.0.0.1:8000/estimasi/';
-
-                $('#modal-form').modal('show');
+                window.location.href = 'http://127.0.0.1:8000/estimasi/edit/' + id_estimasi;
             });
             } else {
                 window.location.href = 'http://127.0.0.1:8000/estimasi/create';
@@ -396,7 +394,7 @@
     document.getElementById("admin_tnkb").value = adminTnkbValueS;
     document.getElementById("biaya_proses").value = biayaProses
     document.getElementById("biaya_admin_pelanggan").value = biayaAdminPelanggan
-    document.getElementById("upping").value = biayaUpp
+    document.getElementById("upping").value = '45000'
     document.getElementById("biaya_estimasi").value = total_biaya_estimasi;
 
     console.log("admin_stnk", adminStnkValueS)

@@ -6,7 +6,7 @@
 
 @section('breadcrumb')
     @parent
-    <li class="active">Daftar Estimasi</li>
+    <li class="active">Daftar Estimas 2</li>
 @endsection
 
 @section('content')
@@ -45,7 +45,7 @@
 @endsection
 
 @push('scripts')
-
+{{--  --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/validator/13.7.0/validator.min.js"
     integrity="sha512-rJU+PnS2bHzDCvRGFhXouCSxf4YYaUyUfjXMHsHFfMKhWDIEBr8go2LZ2EYXOqASey1tWc2qToeOCYh9et2aGQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -69,7 +69,13 @@
                 {data: 'no_plat'},
                 {data: 'nilai_pkb'},
                 {data: 'swdkllj'},
-                {data: 'masa_berlaku_stnk'},
+                {data: 'masa_berlaku_stnk',
+                render: function (data) {
+                    const date = new Date(data);
+                    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                    return date.toLocaleDateString('id-ID', options);
+                    }
+                },
                 {data: 'admin_stnk'},
                 {data: 'admin_tnkb'},
                 {data: 'biaya_proses'},
@@ -85,7 +91,38 @@
                     }
                 },
                 {data: 'aksi', searchable: false, sortable: false},
-            ]
+            ],
+            columnDefs: [
+                {
+                    targets: 2,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 3,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 5,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 6,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 7,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 8,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+                {
+                    targets: 9,
+                    render: $.fn.dataTable.render.number(',', '.', 0, '')
+                },
+               
+            ],
         });
 
         $('#modal-form').validator().on('submit', function (e) {
@@ -112,26 +149,7 @@
         $('#modal-form [name=_method]').val('post');
         $('#modal-form [name=nomor_plat]').focus();
     }
-
-    function editForm(url) {
-        $('#modal-form').modal('show');
-        $('#modal-form .modal-title').text('Edit Estimasi');
-
-        $('#modal-form form')[0].reset();
-        $('#modal-form form').attr('action', url);
-        $('#modal-form [name=_method]').val('put');
-        $('#modal-form [name=nomor_plat]').focus();
-
-        $.get(url)
-            .done((response) => {
-                $('#modal-form [name=nomor_plat]').val(response.nomor_plat);
-            })
-            .fail((errors) => {
-                alert('Tidak dapat menampilkan data');
-                return;
-            });
-    }
-
+    
     function deleteData(url) {
         if (confirm('Yakin ingin menghapus data terpilih?')) {
             $.post(url, {

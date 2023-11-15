@@ -119,10 +119,12 @@ Route::group(['middleware' => 'auth'], function () {
             ->except('create', 'show', 'edit');
 
         Route::get('/estimasi/data', [EstimasiController::class, 'data'])->name('estimasi.data');
-        Route::get('/estimasi/create', [EstimasiController::class, 'create'])->name('estimasi.create');
+        // Route::get('/estimasi/create', [EstimasiController::class, 'create'])->name('estimasi.create');
         Route::post('/estimasi/save', [EstimasiController::class, 'store'])->name('estimasi.save');
-        Route::get('/estimasi/edit', [EstimasiController::class, 'edit'])->name('estimasi.edit');
+        Route::get('/estimasi/edit/{id}', [EstimasiController::class, 'edit'])->name('estimasi.edit');
         Route::put('/estimasi/update', [EstimasiController::class, 'update'])->name('estimasi.update');
+        Route::get('/get-id-estimasi/{nomor_plat}', 'EstimasiController@getIdEstimasi');
+        Route::get('/estimasi/detail/{id}', [EstimasiController::class, 'detail'])->name('estimasi.detail');
         Route::get('/check-nomor-plat/{nomor_plat}', [EstimasiController::class, 'checkNomorPlat']);
         Route::resource('/estimasi', EstimasiController::class);
     });
