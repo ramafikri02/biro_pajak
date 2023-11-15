@@ -11,6 +11,7 @@ class Estimasi extends Model
 
     protected $table = 'estimasi';
     protected $primaryKey = 'id_estimasi';
+    protected $dates = ['masa_berlaku_stnk'];
     protected $guarded = [];
     protected $fillable = [
         // 'id_kendaraan',

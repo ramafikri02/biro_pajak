@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Estimasi;
 use App\Models\Kendaraan;
 use App\Models\Pelanggan;
@@ -13,6 +12,8 @@ use App\Models\JenisKendaraan;
 use App\Models\upping;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class EstimasiController extends Controller
 {
@@ -43,16 +44,24 @@ class EstimasiController extends Controller
         $estimasi = Estimasi::orderBy('id_estimasi', 'desc')->get();
 
         return datatables()
-            ->of($estimasi)
-            ->addIndexColumn()
-            ->addColumn('aksi', function ($estimasi) {
-                return '
-                <div class="btn-group">
-                    <button onclick="editForm(`'. route('estimasi.update', $estimasi->id_estimasi) .'`)" class="btn btn-xs btn-info btn-flat"><i class="fa fa-pencil"></i></button>
-                    <button onclick="deleteData(`'. route('estimasi.destroy', $estimasi->id_estimasi) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
-                </div>
-                ';
-            })
+        ->of($estimasi)
+        ->addIndexColumn()
+        ->addColumn('aksi', function ($estimasi) {
+            return '
+            <div class="btn-group">
+            <a href="http://127.0.0.1:8000/estimasi/edit/' . $estimasi->id_estimasi . '" class="btn btn-info btn-xs btn-flat">
+                <i class="fa fa-pencil">
+                </i>
+            </a>
+            
+            <button onclick="deleteData(`'. route('estimasi.destroy', $estimasi->id_estimasi) .'`)" class="btn btn-xs btn-danger btn-flat"><i class="fa fa-trash"></i></button>
+            <a href="http://127.0.0.1:8000/estimasi/detail/' . $estimasi->id_estimasi . '" class="btn btn-secondary btn-xs btn-flat">
+                <i class="fa fa-eye">
+                </i>
+            </a>
+            </div>';
+        })
+        
             ->rawColumns(['aksi'])
             ->make(true);
     }
@@ -62,6 +71,14 @@ class EstimasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function detail($id)
+    {
+        $estimasi = Estimasi::find($id);
+        return view('estimasi.detail', compact('estimasi'));
+    }
+
+
     public function create()
     {
         $tipe_pengurusan = TipePengurusan::all()->pluck('nama_pengurusan', 'id_tipe_pengurusan');
@@ -128,6 +145,7 @@ class EstimasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         $estimasi = Estimasi::find($id);
@@ -143,7 +161,7 @@ class EstimasiController extends Controller
         $biaya_admin = BiayaAdmin::all()->pluck('nama_admin', 'id_biaya_admin');
         $biaya_uppings = upping::all()->pluck('biaya', 'id_upping');
 
-        return view('estimasi.index', compact('estimasi', 'tipe_pengurusan', 'wilayah', 'kendaraan', 'jenis_kendaraan', 'biaya_admin', 'pelanggan', 'adminTnkbData', 'adminStnkData', 'biayaProsesData', 'biayaAdminData', 'biaya_uppings'));
+        return view('estimasi.edit', compact('estimasi', 'tipe_pengurusan', 'wilayah', 'kendaraan', 'jenis_kendaraan', 'biaya_admin', 'pelanggan', 'adminTnkbData', 'adminStnkData', 'biayaProsesData', 'biayaAdminData', 'biaya_uppings'));
     }
 
     /**
@@ -155,7 +173,7 @@ class EstimasiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $estimasi = Estimasi::find($id);
+        $estimasi = Estimasi::findorfail($id);
         // $estimasi->no_plat = $request->no_plat;
         $estimasi->no_plat = $request->no_plat;
         $estimasi->nilai_pkb = Str::replace(',', '', $request->nilai_pkb);
@@ -172,9 +190,9 @@ class EstimasiController extends Controller
         $estimasi->biaya_admin_pelanggan = Str::replace(',', '', $request->biaya_admin_pelanggan);
         $estimasi->upping = Str::replace(',', '', $request->upping);
         $estimasi->biaya_estimasi = Str::replace(',', '', $request->biaya_estimasi);
-        $estimasi->update();
+        $estimasi->save();
 
-        return response()->json('Data berhasil disimpan', 200);
+        return redirect('/estimasi')->with('success','Data Estimasi Berhasil Di Edit');
     }
 
     /**
