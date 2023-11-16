@@ -36,7 +36,7 @@
                             <div class="col-lg-6">
                                 <label for="no_plat" class="control-label">Nomor Plat</label>
                                 <div>
-                                    <input type="text" name="no_plat" id="no_plat" class="form-control" required autofocus>
+                                    <input type="text" name="no_plat" id="no_plat" class="form-control" required autofocus value="{{ $estimasi->no_plat }}">
                                     <span class="help-block with-errors"></span>
                                 </div>
                             </div>
@@ -97,7 +97,7 @@
     
                             <div class="col-lg-6" style="padding-left: 1.5rem">
                                 <label for="nilai_pkb" class="control-label">Nilai PKB</label>
-                                <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required >
+                                <input type="text" name="nilai_pkb" id="nilai_pkb" class="form-control digits" required value="{{ $estimasi->nilai_pkb }}">
                                     <span class="help-block with-errors"></span>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                         <div class="row">
                            <div class="col-lg-6" style="padding-left: 2.5rem">
                             <label for="swdkllj" class="control-label">SWDKLLJ</label>
-                            <input type="text" name="swdkllj" id="swdkllj" class="form-control digits" required>
+                            <input type="text" name="swdkllj" id="swdkllj" value="{{ $estimasi->swdkllj }}" class="form-control digits" required>
                             <span class="help-block with-errors"></span>
                            </div>
                            <div class="col-lg-6" style="padding-left: 1.5rem">
@@ -352,7 +352,7 @@ function addNewRow() {
             document.getElementById("admin_tnkb").value = adminTnkbValueS;
             document.getElementById("biaya_proses").value = biayaProses;
             document.getElementById("biaya_admin_pelanggan").value = biayaAdminPelanggan;
-            document.getElementById("upping").value = biayaUpp;
+            document.getElementById("upping").value = '45000';
             document.getElementById("biaya_estimasi").value = total_biaya_estimasi;
         } else {
             console.error("Nilai 'masa_berlaku_stnk' kosong");

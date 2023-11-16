@@ -157,7 +157,7 @@
                     '_method': 'delete'
                 })
                 .done((response) => {
-                    table.ajax.reload();
+                    tableOne.ajax.reload();
                 })
                 .fail((errors) => {
                     alert('Tidak dapat menghapus data');
