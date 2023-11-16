@@ -89,7 +89,7 @@
                         <div class="row">
                             <div class="col-lg-6" style="padding-left: 2.5rem">
                                 <label for="masa_berlaku_stnk" class="control-label">Masa berlaku
-                                    Pajak di STNK</label>
+                                    Pajak STNK</label>
                                     <input type="text" name="masa_berlaku_stnk" id="masa_berlaku_stnk" class="form-control datepicker" required autofocus autocomplete="off"
                                     style="border-radius: 0 !important;" >
                                 <span class="help-block with-errors"></span>
