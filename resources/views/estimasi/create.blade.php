@@ -162,45 +162,62 @@
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     document.getElementById('no_plat').addEventListener('blur', function () {
-        var inputNomorPlat = this.value;
+    var inputNomorPlat = this.value;
 
-        fetch('/check-nomor-plat/' + inputNomorPlat, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.nomorPlatExists) {
-                showSweetAlert();
-            }
-        })
-        .catch(error => {
-            console.error('Terjadi kesalahan: ', error);
-        });
+    fetch('/check-nomor-plat/' + inputNomorPlat, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.nomorPlatExists) {
+            showSweetAlert(inputNomorPlat);
+        }
+    })
+    .catch(error => {
+        console.error('Terjadi kesalahan: ', error);
     });
+});
 
-    function showSweetAlert(id_estimasi) {
-        swal({
-            title: "Nomor Plat Sudah Ada",
-            text: "Berkas ini sudah pernah di estimasi. Ingin melanjutkan?",
-            icon: "warning",
-            buttons: {
-                cancel: "Tidak",
-                confirm: "Ya"
-            },
-        }).then((value) => {
-            if (value) {
-                $(document).ready(function() {
-                window.location.href = 'http://127.0.0.1:8000/estimasi/edit/' + id_estimasi;
+function showSweetAlert(nomorPlat) {
+    swal({
+        title: "Nomor Plat Sudah Ada",
+        text: "Berkas ini sudah pernah di estimasi. Ingin melanjutkan?",
+        icon: "warning",
+        buttons: {
+            cancel: "Tidak",
+            confirm: "Ya"
+        },
+    }).then((value) => {
+        if (value) {
+            fetch('/get-id-estimasi/' + nomorPlat, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.id_estimasi) {
+                    $(document).ready(function() {
+                        window.location.href = 'http://127.0.0.1:8000/estimasi/edit/' + data.id_estimasi;
+                    });
+                } else {
+                    window.location.href = 'http://127.0.0.1:8000/estimasi/create';
+                }
+            })
+            .catch(error => {
+                console.error('Terjadi kesalahan: ', error);
             });
-            } else {
-                window.location.href = 'http://127.0.0.1:8000/estimasi/create';
-            }
-        });
-    }
+        } else {
+            window.location.href = 'http://127.0.0.1:8000/estimasi/create';
+        }
+    });
+}
 </script>
 <script>
     // Start get adm_stnk&tnkb

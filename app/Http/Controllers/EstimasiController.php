@@ -215,4 +215,15 @@ class EstimasiController extends Controller
 
         return response()->json(['nomorPlatExists' => $nomorPlatExists]);
     }
+    public function getIdEstimasiByNomorPlat($nomor_plat)
+    {
+        $estimasi = Estimasi::where('no_plat', $nomor_plat)->first();
+
+        if ($estimasi) {
+            return response()->json(['id_estimasi' => $estimasi->id_estimasi]);
+        } else {
+            return response()->json(['id_estimasi' => null]);
+        }
+    }
+
 }

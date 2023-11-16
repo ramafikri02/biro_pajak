@@ -123,9 +123,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/estimasi/save', [EstimasiController::class, 'store'])->name('estimasi.save');
         Route::get('/estimasi/edit/{id}', [EstimasiController::class, 'edit'])->name('estimasi.edit');
         Route::put('/estimasi/update', [EstimasiController::class, 'update'])->name('estimasi.update');
-        Route::get('/get-id-estimasi/{nomor_plat}', 'EstimasiController@getIdEstimasi');
         Route::get('/estimasi/detail/{id}', [EstimasiController::class, 'detail'])->name('estimasi.detail');
         Route::get('/check-nomor-plat/{nomor_plat}', [EstimasiController::class, 'checkNomorPlat']);
+        Route::get('/get-id-estimasi/{nomor_plat}', [EstimasiController::class, 'getIdEstimasiByNomorPlat']);
         Route::resource('/estimasi', EstimasiController::class);
     });
 
