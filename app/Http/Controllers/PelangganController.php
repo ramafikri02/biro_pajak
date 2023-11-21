@@ -15,8 +15,9 @@ class PelangganController extends Controller
      */
     public function index()
     {
+        $pelanggan = Pelanggan::all();
         $biaya_admin = BiayaAdmin::all()->pluck('nama_admin', 'id_biaya_admin');
-        return view('pelanggan.index', compact('biaya_admin'));
+        return view('pelanggan.index', compact('biaya_admin', 'pelanggan'));
     }
 
     public function data()
@@ -56,10 +57,16 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-        $pelanggan = Pelanggan::latest()->first() ?? new Pelanggan();
-        $request['kode_pelanggan'] = 'PLG'. tambah_nol_didepan((int)$pelanggan->id_pelanggan +1, 4);
+        $pelanggan = new Pelanggan();
+        $pelanggan->nama_pelanggan = $request->nama_pelanggan;
+        $pelanggan->id_biaya_admin = $request->id_biaya_admin;
 
-        $pelanggan = Pelanggan::create($request->all());
+        $lastPelanggan = Pelanggan::latest()->first();
+        $kode_pelanggan = $lastPelanggan ? tambah_nol_didepan((int)$lastPelanggan->id_pelanggan + 1, 4) : '0001';
+        $request['kode_pelanggan'] = 'PLG' . $kode_pelanggan;
+
+        $pelanggan->kode_pelanggan = $request->kode_pelanggan;
+        $pelanggan->save();
 
         return response()->json('Data berhasil disimpan', 200);
     }
